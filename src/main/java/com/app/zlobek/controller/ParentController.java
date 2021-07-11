@@ -1,11 +1,14 @@
 package com.app.zlobek.controller;
 
+import com.app.zlobek.entity.Parent;
 import com.app.zlobek.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/parents")
@@ -26,9 +29,9 @@ public class ParentController {
     @GetMapping("/list")
     public String listOfParents(Model model) {
 
-//        List<Parent> parentList = parentService.findAll();
-//
-//        model.addAttribute("parents", parentList);
+        List<Parent> parentList = parentService.findAll();
+
+        model.addAttribute("parents", parentList);
 
         return "parents/listOfParents";
 
