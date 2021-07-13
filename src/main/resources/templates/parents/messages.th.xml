@@ -1,0 +1,25 @@
+<thlogic>
+    <attr sel="#parentFirstNameAndLastNameId"
+          th:text="${singleParent.parentFirstName} + ' ' + ${singleParent.parentLastName}"/>
+    <attr sel="#childrenFirstNameId"
+          th:text="${singleParent.childrenFirstName}"/>
+    <attr sel="#childrenLastNameId"
+          th:text="${singleParent.childrenLastName}"/>
+    <attr sel="#addressId"
+          th:text="${singleParent.address}"/>
+    <attr sel="#phoneNumberId"
+          th:text="${singleParent.phoneNumber}"/>
+    <attr sel="#emailId"
+          th:text="${singleParent.email}"/>
+
+    <attr sel="#showMessagesId"
+          th:each="tempMessages : ${messages}"/>
+    <attr sel="#messageId"
+          th:text="${tempMessages.message}"/>
+    <attr sel="#messageDateId"
+          th:text="${tempMessages.date}"/>
+
+    <attr sel="#backId"
+          th:href="list" th:text="Powrót"/>
+
+</thlogic>

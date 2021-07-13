@@ -2,38 +2,52 @@
 <html lang="pl" xmlns:th="http://www.tymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>List Of All Parents</title>
+    <title>Messages</title>
 </head>
 <body>
 <div>
+    <h3>Przeglądasz zestawienie wiadomości rodzica: </h3>
+    <h1 id="parentFirstNameAndLastNameId"/>
+
+</div>
+<div>
     <table>
         <thead>
-        <th>Imię rodzica</th>
-        <th>Nazwisko rodzica</th>
         <th>Imię dziecka</th>
         <th>Nazwisko dziecka</th>
         <th>Adres zamieszkania</th>
         <th>Telefon</th>
         <th>Adres e-mail</th>
-        <th>Zobacz wysłane wiadomości</th>
         </thead>
         <tbody>
-        <tr id="showParentsId">
-            <td id="parentFirstNameId"/>
-            <td id="parentLastNameId"/>
+        <tr>
             <td id="childrenFirstNameId"/>
             <td id="childrenLastNameId"/>
             <td id="addressId"/>
             <td id="phoneNumberId"/>
             <td id="emailId"/>
-            <td><a id="showMessagesId"/></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table>
+        <thead>
+        <th>Data wiadomości</th>
+        <th>Treść wiadomości</th>
+        </thead>
+        <tbody>
+        <tr id="showMessagesId">
+            <td id="messageDateId"/>
+            <td id="messageId"/>
         </tr>
         </tbody>
     </table>
 
 </div>
-
-
-
+<div>
+    <a id="backId"/>
+</div>
 </body>
 </html>
