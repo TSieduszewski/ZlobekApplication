@@ -8,6 +8,7 @@
 <div>
     <table>
         <thead>
+        <td>Zaznaczenie</td>
         <th>Imię rodzica</th>
         <th>Nazwisko rodzica</th>
         <th>Imię dziecka</th>
@@ -16,9 +17,11 @@
         <th>Telefon</th>
         <th>Adres e-mail</th>
         <th>Zobacz wysłane wiadomości</th>
+        <th>Wyślij wiadomość</th>
         </thead>
         <tbody>
         <tr id="showParentsId">
+            <td>O</td>
             <td id="parentFirstNameId"/>
             <td id="parentLastNameId"/>
             <td id="childrenFirstNameId"/>
@@ -27,12 +30,17 @@
             <td id="phoneNumberId"/>
             <td id="emailId"/>
             <td><a id="showMessagesId"/></td>
+            <td>
+                <a th:href="@{/messages/showFormForAddMessage(parentId=${tempParent.id})}">Wyślij wiadomość</a>
+            </td>
         </tr>
         </tbody>
     </table>
 
 </div>
-
+<div>
+    <a th:href="@{/parents/showFormForAdd}">Wyślij do wielu/wszystkich</a>
+</div>
 
 
 </body>

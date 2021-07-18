@@ -7,8 +7,11 @@ import java.util.List;
 public interface ParentService {
 
     List<Parent> findAll();
+//
+//    List<Parent> findSelected();
 
     Parent findById(int id);
+
 
     void save(Parent parent);
 

@@ -40,8 +40,9 @@ public class Parent {
     @Column(name = "email")
     private String email;
 
-    @OneToMany
-    @JoinColumn(name="id_client")
+//    @OneToMany
+//    @JoinColumn(name="id_client")
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Message> messages;
 
     public Parent() {
@@ -55,5 +56,14 @@ public class Parent {
         this.email = email;
     }
 
-
+    public Parent(int id, String parentFirstName, String parentLastName, String childrenFirstName, String childrenLastName, String address, String phoneNumber, String email) {
+        this.id = id;
+        this.parentFirstName = parentFirstName;
+        this.parentLastName = parentLastName;
+        this.childrenFirstName = childrenFirstName;
+        this.childrenLastName = childrenLastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }
