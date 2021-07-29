@@ -1,7 +1,10 @@
 package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Parent;
+import com.app.zlobek.service.MessageService;
 import com.app.zlobek.service.ParentService;
+import com.app.zlobek.util.messages.ListOfParentsToMassSend;
+import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,8 +35,9 @@ public class ParentController {
     public String listOfParents(Model model) {
 
         List<Parent> parentList = parentService.findAll();
-
+        MessageWithReceivers listOfParents = new MessageWithReceivers();
         model.addAttribute("parents", parentList);
+        model.addAttribute("listOfParents", listOfParents);
 
         return "parents/listOfParents";
 
@@ -46,6 +51,7 @@ public class ParentController {
 
         return "parents/messages";
     }
+
 
 
 }

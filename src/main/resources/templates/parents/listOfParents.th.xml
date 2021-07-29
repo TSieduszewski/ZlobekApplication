@@ -2,6 +2,8 @@
     <attr sel="#showParentsId"
           th:each="tempParent : ${parents}"/>
 
+    <attr sel="#parentFinalId"
+          th:text="${tempParent.id}"/>
     <attr sel="#parentFirstNameId"
           th:text="${tempParent.parentFirstName}"/>
     <attr sel="#parentLastNameId"

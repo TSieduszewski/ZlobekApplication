@@ -51,4 +51,9 @@ public class Message {
         this.parent = parent;
     }
 
+    public Message(String message, LocalDate date, Parent parent) {
+        this.parent = parent;
+        this.message = message;
+        this.date = date;
+    }
 }

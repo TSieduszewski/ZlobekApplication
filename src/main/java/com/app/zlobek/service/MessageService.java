@@ -16,4 +16,8 @@ public interface MessageService{
     void save(Message message);
 
     void deleteById(int id);
+
+    List<Message> saveAll(Iterable check);
+
+    Message saveAndFlush(Message message);
 }

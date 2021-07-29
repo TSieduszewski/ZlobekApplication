@@ -7,4 +7,9 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 
+    @Override
+    <S extends Message> List<S> saveAll(Iterable<S> iterable);
+
+    @Override
+    <S extends Message> S saveAndFlush(S s);
 }

@@ -66,4 +66,8 @@ public class Parent {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+
+    public Parent(int id){
+        this.id=id;
+    }
 }
