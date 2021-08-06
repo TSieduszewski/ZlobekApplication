@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/messages")
@@ -46,11 +47,13 @@ public class MessageController {
         if (messageReadyToSave.isSingleParentStatus()) {
             int tempId = messageReadyToSave.getIdOfSingleParents();
             messageReadyToSave.getMessage().setParent(parentService.findById(tempId));
+            messageReadyToSave.getMessage().setDate(LocalDateTime.now());
             messageService.save(messageReadyToSave.getMessage());
         } else {
 
 
             for (int tempId : messageReadyToSave.getSelectedParents()) {
+                messageReadyToSave.getMessage().setDate(LocalDateTime.now());
                 messageService.save(new Message(messageReadyToSave.getMessage().getMessage(),
                                                 messageReadyToSave.getMessage().getDate(),
                                                 parentService.findById(tempId)));
