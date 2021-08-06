@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Of All Parents</title>
+</head>
+<body>
+
+<form th:action="@{/messages/save}" method="POST">
+    <div>
+        <table>
+            <thead>
+            <td>Zaznaczenie</td>
+            <th>Imię rodzica</th>
+            <th>Nazwisko rodzica</th>
+            <th>Imię dziecka</th>
+            <th>Nazwisko dziecka</th>
+            <th>Adres zamieszkania</th>
+            <th>Telefon</th>
+            <th>Adres e-mail</th>
+            <th>Zobacz wysłane wiadomości</th>
+            <th>Wyślij wiadomość</th>
+            </thead>
+            <tbody>
+            <tr id="showParentsId">
+                <td><input type="checkbox" th:field="${listOfParents.selectedParents}" th:value="${tempParent.id}"></td>
+                <td id="parentFirstNameId"/>
+                <td id="parentLastNameId"/>
+                <td id="childrenFirstNameId"/>
+                <td id="childrenLastNameId"/>
+                <td id="addressId"/>
+                <td id="phoneNumberId"/>
+                <td id="emailId"/>
+                <td><a id="showMessagesId"/></td>
+                <td>
+                    <a th:href="@{/messages/showFormForAddMessage(parentId=${tempParent.id})}">Wyślij wiadomość</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div>
+        <div>
+            <input type="hidden" th:field="${listOfParents.message.id}"/>
+        </div>
+
+        <div>
+            <input type="text" th:field="${listOfParents.message.message}">
+        </div>
+        <div>
+            <input type="date" th:field="${listOfParents.message.date}">
+        </div>
+    </div>
+
+
+    <div>
+        <button type="submit">Wyślij do zaznaczonych</button>
+    </div>
+</form>
+<p></p>
+
+
+
+
+<form action="#" th:action="@{/messages/save}" th:object="${listOfParents}" method="POST">
+
+    <div>
+        <tr id="showParentsId">
+            <td><input type="hidden" name="selectedParents" th:value="${tempParent.id}"></td>
+        </tr>
+    </div>
+
+    <div>
+        <div>
+            <input type="hidden" th:field="${listOfParents.message.id}"/>
+        </div>
+        <div>
+            <input type="text" th:field="${listOfParents.message.message}">
+        </div>
+        <div>
+            <input type="date" th:field="${listOfParents.message.date}">
+        </div>
+    </div>
+
+
+    <div>
+        <button type="submit">Wyślij do wszystkich</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Message Form</title>
+</head>
+<body>
+<div>
+
+    <form action="#" th:action="@{/messages/save}" th:object="${messageReadyToSendAttribute}" method="POST">
+
+        <div>
+            <input type="hidden" th:field="${messageReadyToSendAttribute.message.id}"/>
+        </div>
+
+        <input type="hidden" th:field="${messageReadyToSendAttribute.idOfSingleParents}"/>
+        <input type="hidden" th:field="${messageReadyToSendAttribute.singleParentStatus}"/>
+        <div>
+            <input type="text" th:field="${messageReadyToSendAttribute.message.message}">
+        </div>
+        <div>
+            <input type="date" th:field="${messageReadyToSendAttribute.message.date}">
+        </div>
+
+        <button type="submit">Save</button>
+        <hr>
+    </form>
+
+<!--    <form action="#" th:action="@{/messages/save}" th:object="${messageAttribute}" method="POST">-->
+
+<!--        <div th:object="${messageAttribute}">-->
+<!--            <input type="hidden" th:field="*{id}"/>-->
+<!--        </div>-->
+
+<!--        <input type="hidden" th:field="${messageAttribute.parent.id}"/>-->
+
+<!--        <div th:object="${messageAttribute}">-->
+<!--            <input type="text" th:field="*{message}">-->
+<!--        </div>-->
+<!--        <div th:object="${messageAttribute}">-->
+<!--            <input type="date" th:field="*{date}">-->
+<!--        </div>-->
+
+<!--        <button type="submit">Save</button>-->
+<!--        <hr>-->
+<!--    </form>-->
+
+
+</div>
+</body>
+</html>
