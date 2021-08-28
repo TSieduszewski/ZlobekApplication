@@ -1,4 +1,0 @@
-<thlogic>
-    <attr sel="#showId"
-          th:href="list" th:text="'Show list of all parents'"/>
-</thlogic>

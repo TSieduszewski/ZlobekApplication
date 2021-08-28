@@ -1,0 +1,13 @@
+<thlogic>
+    <attr sel="#showAttendanceId"
+          th:each="tempAttendance : ${attendanceList}"/>
+
+    <attr sel="#attendanceDateId"
+          th:text="${tempAttendance.attendanceDate}"/>
+    <attr sel="#attendanceStatusId"
+          th:text="${tempAttendance.attendant} ? 'Obecność' : 'Nieobecność'"/>
+    <attr sel="#attendanceButtonStatusId"
+          th:href="@{/attendance/change(attendanceId=${tempAttendance.id})}" th:text="${tempAttendance.attendant} ? 'Zmień na nieobecność' : 'Zmień na obecność'"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>

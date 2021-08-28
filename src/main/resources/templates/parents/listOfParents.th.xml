@@ -18,8 +18,8 @@
           th:text="${tempParent.phoneNumber}"/>
     <attr sel="#emailId"
           th:text="${tempParent.email}"/>
-
     <attr sel="#showMessagesId"
           th:href="@{/parents/showSingleParentMessages(parentId=${tempParent.id})}" th:text="Zobacz"/>
-
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>
