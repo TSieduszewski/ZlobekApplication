@@ -1,0 +1,6 @@
+<thlogic>
+    <attr sel="#showId"
+          th:href="'parents/list'" th:text="'Show list of all parents'"/>
+    <attr sel="#attendanceId"
+          th:href="'attendance/showFormForSelectAttendance'" th:text="'Show form of attendance'"/>
+</thlogic>
