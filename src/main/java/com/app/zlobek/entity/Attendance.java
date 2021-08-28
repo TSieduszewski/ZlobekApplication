@@ -1,7 +1,6 @@
 package com.app.zlobek.entity;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,12 +15,10 @@ public class Attendance {
     @Column(name = "id")
     private int id;
 
-    //@ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne
     @JoinColumn(name = "id_client")
     private Parent parent;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "attendancedate")
     private LocalDate attendanceDate;
 

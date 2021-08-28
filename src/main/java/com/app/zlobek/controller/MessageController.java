@@ -2,7 +2,6 @@ package com.app.zlobek.controller;
 
 
 import com.app.zlobek.entity.Message;
-import com.app.zlobek.entity.Parent;
 import com.app.zlobek.service.MessageService;
 import com.app.zlobek.service.ParentService;
 import com.app.zlobek.util.messages.MessageWithReceivers;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
@@ -35,14 +33,12 @@ public class MessageController {
         MessageWithReceivers messageReadyToSend = new MessageWithReceivers(theId);
         model.addAttribute("messageReadyToSendAttribute", messageReadyToSend);
 
-        System.out.println("showFormForAddMessage = " + messageReadyToSend.isSingleParentStatus());
         return "newMessages/newMessageForm";
     }
 
 
     @PostMapping("/save")
     public String saveMessage(@Valid @ModelAttribute("listOfParents") MessageWithReceivers messageReadyToSave) {
-        System.out.println("saveMessage = " + messageReadyToSave.isSingleParentStatus());
 
         if (messageReadyToSave.isSingleParentStatus()) {
             int tempId = messageReadyToSave.getIdOfSingleParents();
@@ -50,7 +46,6 @@ public class MessageController {
             messageReadyToSave.getMessage().setDate(LocalDateTime.now());
             messageService.save(messageReadyToSave.getMessage());
         } else {
-
 
             for (int tempId : messageReadyToSave.getSelectedParents()) {
                 messageReadyToSave.getMessage().setDate(LocalDateTime.now());

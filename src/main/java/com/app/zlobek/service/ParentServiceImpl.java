@@ -1,7 +1,6 @@
 package com.app.zlobek.service;
 
 import com.app.zlobek.dao.ParentRepository;
-import com.app.zlobek.entity.Message;
 import com.app.zlobek.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +24,6 @@ public class ParentServiceImpl implements ParentService {
     public List<Parent> findAll() {
         return parentRepository.findAll();
     }
-
-//    @Override
-//    public List<Parent> findSelected(Iterable check){
-//        return parentRepository.findAllById(check);
-//    }
 
     @Override
     public Parent findById(int id) {

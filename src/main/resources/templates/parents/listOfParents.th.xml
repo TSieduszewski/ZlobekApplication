@@ -20,6 +20,24 @@
           th:text="${tempParent.email}"/>
     <attr sel="#showMessagesId"
           th:href="@{/parents/showSingleParentMessages(parentId=${tempParent.id})}" th:text="Zobacz"/>
+    <attr sel="#checkboxId"
+          type="checkbox" th:field="${listOfParents.selectedParents}" th:value="${tempParent.id}"/>
+    <attr sel="#sendMessageButtonId"
+          th:href="@{/messages/showFormForAddMessage(parentId=${tempParent.id})}" th:text="'Wyślij wiadomość'"/>
+    <attr sel="#listOfParentsMessageIdId"
+          type="hidden" th:field="${listOfParents.message.id}"/>
+    <attr sel="#listOfParentsMessageMessageId"
+          type="text" th:field="${listOfParents.message.message}"/>
+    <attr sel="#formSendToAllId"
+          action="#" th:action="@{/messages/save}" th:object="${listOfParents}" method="POST"/>
+    <attr sel="#tempParentIdId"
+          type="hidden" name="selectedParents" th:value="${tempParent.id}"/>
+    <attr sel="#listOfParentsMessageIdId"
+          type="hidden" th:field="${listOfParents.message.id}"/>
+    <attr sel="#listOfParentsMessageMessageId"
+          type="text" th:field="${listOfParents.message.message}"/>
+    <attr sel="#mainFormId"
+          th:action="@{/messages/save}" method="POST"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>

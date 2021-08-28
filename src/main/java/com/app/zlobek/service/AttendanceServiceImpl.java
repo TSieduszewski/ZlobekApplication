@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Collections;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,18 +35,18 @@ public class AttendanceServiceImpl implements AttendanceService {
         int parentId = 1;
 
         int tempAttendanceListSize = attendanceRepository.findAllByParentAndAttendanceDateBetween
-                                                    (new Parent(parentId), LocalDate.now(),LocalDate.now().plusDays(10))
+                                                    (new Parent(parentId), hourGuard(),hourGuard().plusDays(10))
                                                     .size();
 
         if(tempAttendanceListSize<10){
             for(int i = tempAttendanceListSize; i<10;i++){
-                Attendance attendance = new Attendance(new Parent(parentId), LocalDate.now().plusDays(i), true);
+                Attendance attendance = new Attendance(new Parent(parentId), hourGuard().plusDays(i), true);
                 attendanceRepository.save(attendance);
             }
         }
 
         return attendanceRepository.findAllByParentAndAttendanceDateBetween
-                                    (new Parent(parentId), LocalDate.now(),LocalDate.now().plusDays(10));
+                                    (new Parent(parentId), hourGuard(),hourGuard().plusDays(10));
     }
 
     @Override
@@ -71,5 +71,17 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public void deleteById(int id) {
         attendanceRepository.deleteById(id);
+    }
+
+    private LocalDate hourGuard(){
+
+        LocalTime hourGuard = LocalTime.now();
+
+        if(hourGuard.isBefore(LocalTime.of(7,0,0))){
+            return LocalDate.now();
+        } else {
+            return LocalDate.now().plusDays(1);
+        }
+
     }
 }

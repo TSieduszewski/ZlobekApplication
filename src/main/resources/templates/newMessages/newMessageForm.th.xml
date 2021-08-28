@@ -1,0 +1,16 @@
+<thlogic>
+    <attr sel="#formId"
+          action="#" th:action="@{/messages/save}" th:object="${messageReadyToSendAttribute}" method="POST"/>
+    <attr sel="#messageIdId"
+          type="hidden" th:field="${messageReadyToSendAttribute.message.id}"/>
+    <attr sel="#idOfSingleParentsId"
+          type="hidden" th:field="${messageReadyToSendAttribute.idOfSingleParents}"/>
+    <attr sel="#singleParentStatusId"
+          type="hidden" th:field="${messageReadyToSendAttribute.singleParentStatus}"/>
+    <attr sel="#messageId"
+          type="text" th:field="${messageReadyToSendAttribute.message.message}"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+    <attr sel="#backId"
+          th:href="'/parents/list'" th:text="Powrót"/>
+</thlogic>

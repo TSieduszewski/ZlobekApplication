@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:action="@{/messages/save}" method="POST">
+<form id="mainFormId">
     <div>
         <table>
             <thead>
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
             <tr id="showParentsId">
-                <td><input type="checkbox" th:field="${listOfParents.selectedParents}" th:value="${tempParent.id}"></td>
+                <td><input id="checkboxId"></td>
                 <td id="parentFirstNameId"/>
                 <td id="parentLastNameId"/>
                 <td id="childrenFirstNameId"/>
@@ -33,7 +33,7 @@
                 <td id="emailId"/>
                 <td><a id="showMessagesId"/></td>
                 <td>
-                    <a th:href="@{/messages/showFormForAddMessage(parentId=${tempParent.id})}">Wyślij wiadomość</a>
+                    <a id="sendMessageButtonId"></a>
                 </td>
             </tr>
             </tbody>
@@ -43,11 +43,11 @@
 
     <div>
         <div>
-            <input type="hidden" th:field="${listOfParents.message.id}"/>
+            <input id="listOfParentsMessageIdId"/>
         </div>
 
         <div>
-            <input type="text" th:field="${listOfParents.message.message}">
+            <input id="listOfParentsMessageMessageId"/>
         </div>
     </div>
 
@@ -61,20 +61,20 @@
 
 
 
-<form action="#" th:action="@{/messages/save}" th:object="${listOfParents}" method="POST">
+<form id="formSendToAllId">
 
     <div>
         <tr id="showParentsId">
-            <td><input type="hidden" name="selectedParents" th:value="${tempParent.id}"></td>
+            <td><input id="tempParentIdId"></td>
         </tr>
     </div>
 
     <div>
         <div>
-            <input type="hidden" th:field="${listOfParents.message.id}"/>
+            <input id="listOfParentsMessageIdId"/>
         </div>
         <div>
-            <input type="text" th:field="${listOfParents.message.message}">
+            <input id="listOfParentsMessageMessageId">
         </div>
     </div>
 

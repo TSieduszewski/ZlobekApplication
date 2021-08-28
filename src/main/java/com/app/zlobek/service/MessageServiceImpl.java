@@ -49,13 +49,4 @@ public class MessageServiceImpl implements MessageService {
         messageRepository.deleteById(id);
     }
 
-    @Override
-    public List<Message> saveAll(Iterable check) {
-        return messageRepository.saveAll(check);
-    }
-
-    @Override
-    public Message saveAndFlush(Message message) {
-        return messageRepository.saveAndFlush(message);
-    }
 }

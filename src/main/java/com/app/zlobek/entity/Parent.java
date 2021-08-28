@@ -40,8 +40,6 @@ public class Parent {
     @Column(name = "email")
     private String email;
 
-//    @OneToMany
-//    @JoinColumn(name="id_client")
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Message> messages;
 

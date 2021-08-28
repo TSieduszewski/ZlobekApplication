@@ -7,22 +7,26 @@
 <body>
 <div>
 
-    <form action="#" th:action="@{/messages/save}" th:object="${messageReadyToSendAttribute}" method="POST">
+    <form id="formId">
 
         <div>
-            <input type="hidden" th:field="${messageReadyToSendAttribute.message.id}"/>
+            <input id="messageIdId"/>
         </div>
 
-        <input type="hidden" th:field="${messageReadyToSendAttribute.idOfSingleParents}"/>
-        <input type="hidden" th:field="${messageReadyToSendAttribute.singleParentStatus}"/>
+        <input id="idOfSingleParentsId"/>
+        <input id="singleParentStatusId"/>
         <div>
-            <input type="text" th:field="${messageReadyToSendAttribute.message.message}">
+            <input id="messageId"/>
         </div>
 
         <button type="submit">Save</button>
         <hr>
     </form>
 
+</div>
+
+<div>
+    <a id="backId"/>
 </div>
 </body>
 </html>
