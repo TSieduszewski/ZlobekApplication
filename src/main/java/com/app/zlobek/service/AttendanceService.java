@@ -12,6 +12,10 @@ public interface AttendanceService {
 
     List<Attendance> findAllByIdAndDate();
 
+    List<Attendance> findAllById(int id);
+
+    List<Attendance> findAllByDate();
+
     Attendance findById(int id);
 
     void save(Attendance attendance);

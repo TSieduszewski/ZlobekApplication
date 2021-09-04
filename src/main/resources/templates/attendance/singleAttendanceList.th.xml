@@ -1,0 +1,15 @@
+<thlogic>
+
+    <attr sel="#parentAndChildrenId"
+          th:text="'Przeglądasz zestawienie obecności/nieobecności rodzica '
+          + ${singleParent.parentFirstName} + ' ' + ${singleParent.parentLastName}
+          + ' (dziecko: ' + ${singleParent.childrenFirstName} + ' ' + ${singleParent.childrenLastName} +'):'"/>
+    <attr sel="#showAttendanceId"
+          th:each="tempAttendance : ${singleAttendanceList}"/>
+    <attr sel="#attendanceDateId"
+          th:text="${tempAttendance.attendanceDate}"/>
+    <attr sel="#attendanceStatusId"
+          th:text="${tempAttendance.attendant} ? 'Obecność' : 'Nieobecność'"/>
+    <attr sel="#backId"
+          th:href="'/attendance/showAttendanceOfAllParents'" th:text="Powrót"/>
+</thlogic>

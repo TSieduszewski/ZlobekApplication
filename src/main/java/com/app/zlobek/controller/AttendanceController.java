@@ -1,13 +1,16 @@
 package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Attendance;
+import com.app.zlobek.entity.Parent;
 import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.ParentService;
+import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -47,5 +50,33 @@ public class AttendanceController {
         attendanceService.save(attendance);
 
         return "redirect:/attendance/showFormForSelectAttendance";
+    }
+
+    @GetMapping("/showAttendanceOfAllParents")
+    public String showAttendanceOfAllParents(Model model){
+        List<Parent> parentList = parentService.findAll();
+        model.addAttribute("parents", parentList);
+       return "attendance/attendanceList";
+    }
+
+    @GetMapping("/showListOfSingleParentsAttendance")
+    public String showListOfSingleParentsAttendance(@RequestParam("parentId") int id, Model model){
+
+        Parent singleParent = parentService.findById(id);
+        List<Attendance> parentAttendanceList = attendanceService.findAllById(id);
+        model.addAttribute("singleParent", singleParent);
+        model.addAttribute("singleAttendanceList", parentAttendanceList);
+
+
+        return "attendance/singleAttendanceList";
+    }
+
+    @GetMapping("/showPresentDayListOfAttendanceOfAllParents")
+    public String showPresentDayListOfAttendanceOfAllParents(Model model){
+
+        List<Attendance> parentList = attendanceService.findAllByDate();
+
+        model.addAttribute("parents", parentList);
+        return "attendance/attendanceListPresentDay";
     }
 }

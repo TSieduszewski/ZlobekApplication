@@ -1,0 +1,25 @@
+<thlogic>
+    <attr sel="#showParentsId"
+          th:each="tempParent : ${parents}"/>
+
+    <attr sel="#parentFinalId"
+          th:text="${tempParent.id}"/>
+    <attr sel="#parentFirstNameId"
+          th:text="${tempParent.parentFirstName}"/>
+    <attr sel="#parentLastNameId"
+          th:text="${tempParent.parentLastName}"/>
+    <attr sel="#childrenFirstNameId"
+          th:text="${tempParent.childrenFirstName}"/>
+    <attr sel="#childrenLastNameId"
+          th:text="${tempParent.childrenLastName}"/>
+    <attr sel="#addressId"
+          th:text="${tempParent.address}"/>
+    <attr sel="#phoneNumberId"
+          th:text="${tempParent.phoneNumber}"/>
+    <attr sel="#emailId"
+          th:text="${tempParent.email}"/>
+    <attr sel="#linkToListId"
+          th:href="@{/attendance/showListOfSingleParentsAttendance(parentId=${tempParent.id})}" th:text="'Zobacz listę'"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>
