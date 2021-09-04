@@ -1,6 +1,14 @@
 <thlogic>
     <attr sel="#showId"
-          th:href="'parents/list'" th:text="'Show list of all parents'"/>
+          th:href="'parents/list'" th:text="'Wiadomości do rodziców'"/>
     <attr sel="#attendanceId"
-          th:href="'attendance/showFormForSelectAttendance'" th:text="'Show form of attendance'"/>
+          th:href="'attendance/showFormForSelectAttendance'" th:text="'Zgłoś obecność/nieobecność'"/>
+    <attr sel="#attendanceListOfAllParentsId"
+          th:href="'attendance/showAttendanceOfAllParents'" th:text="'Obecności/nieobecności - zestawienie wszystkich rodziców'"/>
+    <attr sel="#oneDayAttendanceListOfAllParentsId"
+          th:href="'attendance/showPresentDayListOfAttendanceOfAllParents'" th:text="'Pokaż obecności/nieobecności'"/>
+
+
+
+
 </thlogic>

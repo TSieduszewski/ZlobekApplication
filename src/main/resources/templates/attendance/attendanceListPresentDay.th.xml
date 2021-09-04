@@ -1,0 +1,19 @@
+<thlogic>
+    <attr sel="#showParentsId"
+          th:each="tempParent : ${parents}"/>
+
+    <attr sel="#parentFirstNameId"
+          th:text="${tempParent.parent.parentFirstName}"/>
+    <attr sel="#parentLastNameId"
+          th:text="${tempParent.parent.parentLastName}"/>
+    <attr sel="#childrenFirstNameId"
+          th:text="${tempParent.parent.childrenFirstName}"/>
+    <attr sel="#childrenLastNameId"
+          th:text="${tempParent.parent.childrenLastName}"/>
+    <attr sel="#presentDataId"
+          th:text="${tempParent.attendanceDate}"/>
+    <attr sel="#presentStatusId"
+          th:text="${tempParent.attendant} ? 'Obecność' : 'Nieobecność'"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>
