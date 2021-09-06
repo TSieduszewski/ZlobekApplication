@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/messages")
@@ -50,14 +51,23 @@ public class MessageController {
             for (int tempId : messageReadyToSave.getSelectedParents()) {
                 messageReadyToSave.getMessage().setDate(LocalDateTime.now());
                 messageService.save(new Message(messageReadyToSave.getMessage().getMessage(),
-                                                messageReadyToSave.getMessage().getDate(),
-                                                parentService.findById(tempId)));
+                        messageReadyToSave.getMessage().getDate(),
+                        parentService.findById(tempId)));
             }
 
         }
 
         return "redirect:/parents/list";
 
+    }
+
+    @GetMapping("/listOfMessagesFromDirector")
+    public String showMessagesFromDirector(Model model) {
+        List<Message> listOfMessagesFromParents = messageService.findAllByParentAndDate();
+
+        model.addAttribute("listOfMessagesFromParents", listOfMessagesFromParents);
+
+        return "parents/listOfMessagesFromDirector";
     }
 
 }

@@ -2,10 +2,12 @@ package com.app.zlobek.service;
 
 import com.app.zlobek.dao.MessageRepository;
 import com.app.zlobek.entity.Message;
+import com.app.zlobek.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,4 +51,17 @@ public class MessageServiceImpl implements MessageService {
         messageRepository.deleteById(id);
     }
 
+    @Override
+    public List<Message> findAllByParentAndDate() {
+
+        //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
+        int parentId = 1;
+
+
+        return messageRepository.findAllByParentAndDateAfterOrderByDateDesc(new Parent(parentId),
+                                                             LocalDateTime.now().minusDays(30));
+
+
+
+    }
 }
