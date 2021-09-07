@@ -1,0 +1,15 @@
+<thlogic>
+    <attr sel="#formId"
+          action="#" th:action="@{/questions/save}" th:object="${question}" method="POST"/>
+    <attr sel="#messageIdId"
+          type="hidden" th:field="${question.id}"/>
+    <attr sel="#parentId"
+          type="hidden" th:field="${question.parent}"/>
+    <attr sel="#dateId"
+          type="hidden" th:field="${question.date}"/>
+    <attr sel="#messageId"
+          type="text" th:field="${question.message}"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+
+</thlogic>

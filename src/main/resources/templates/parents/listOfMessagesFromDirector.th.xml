@@ -1,0 +1,11 @@
+<thlogic>
+    <attr sel="#showParentsId"
+          th:each="tempMessage : ${listOfMessagesFromParents}"/>
+
+    <attr sel="#presentDataId"
+          th:text="${tempMessage.date}"/>
+    <attr sel="#messageId"
+          th:text="${tempMessage.message}"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>

@@ -17,4 +17,5 @@ public interface MessageService{
 
     void deleteById(int id);
 
+    List<Message> findAllByParentAndDate();
 }

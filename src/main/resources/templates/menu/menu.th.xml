@@ -7,7 +7,12 @@
           th:href="'attendance/showAttendanceOfAllParents'" th:text="'Obecności/nieobecności - zestawienie wszystkich rodziców'"/>
     <attr sel="#oneDayAttendanceListOfAllParentsId"
           th:href="'attendance/showPresentDayListOfAttendanceOfAllParents'" th:text="'Pokaż obecności/nieobecności'"/>
-
+    <attr sel="#messagesFromDirectorId"
+          th:href="'messages/listOfMessagesFromDirector'" th:text="'Pokaż wiadomości od dyrekcji'"/>
+    <attr sel="#questionToDirectorId"
+          th:href="'questions/showFormForAddQuestion'" th:text="'Wyślij zapytanie do dyrekcji'"/>
+    <attr sel="#questionListOfAllParentsId"
+          th:href="'questions/showListOfQuestions'" th:text="'Zobacz zapytania od rodziców'"/>
 
 
 

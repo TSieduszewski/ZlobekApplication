@@ -1,0 +1,19 @@
+<thlogic>
+    <attr sel="#showParentsId"
+          th:each="tempQuestion : ${listOfQuestions}"/>
+
+    <attr sel="#parentFirstNameId"
+          th:text="${tempQuestion.parent.parentFirstName}"/>
+    <attr sel="#parentLastNameId"
+          th:text="${tempQuestion.parent.parentLastName}"/>
+    <attr sel="#childrenFirstNameId"
+          th:text="${tempQuestion.parent.childrenFirstName}"/>
+    <attr sel="#childrenLastNameId"
+          th:text="${tempQuestion.parent.childrenLastName}"/>
+    <attr sel="#dateId"
+          th:text="${tempQuestion.date}"/>
+    <attr sel="#questionId"
+          th:text="${tempQuestion.message}"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>
