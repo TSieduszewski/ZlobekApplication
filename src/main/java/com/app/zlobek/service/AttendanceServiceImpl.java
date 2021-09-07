@@ -37,7 +37,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
         int parentId = 2;
 
-        int tempAttendanceListSize = attendanceRepository.findAllByParentAndAttendanceDateBetween
+        int tempAttendanceListSize = attendanceRepository.findAllByParentAndAttendanceDateBetweenOrderByAttendanceDateDesc
                 (new Parent(parentId), hourGuard(), hourGuard().plusDays(10))
                 .size();
 
@@ -48,31 +48,22 @@ public class AttendanceServiceImpl implements AttendanceService {
             }
         }
 
-        return attendanceRepository.findAllByParentAndAttendanceDateBetween
+        return attendanceRepository.findAllByParentAndAttendanceDateBetweenOrderByAttendanceDateDesc
                 (new Parent(parentId), hourGuard(), hourGuard().plusDays(10));
     }
 
     @Override
     public List<Attendance> findAllById(int id) {
-        //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
 
-        int tempAttendanceListSize = attendanceRepository.findAllByParentAndAttendanceDateBetween
-                (new Parent(id), LocalDate.now().minusDays(10), LocalDate.now())
-                .size();
+        return attendanceRepository.findAllByParentAndAttendanceDateBetweenOrderByAttendanceDateDesc
+                (new Parent(id), LocalDate.now().minusDays(10), LocalDate.now());
 
-        if (tempAttendanceListSize < 10) {
-            return attendanceRepository.findAllByParentAndAttendanceDateBetween
-                    (new Parent(id), LocalDate.now().minusDays(tempAttendanceListSize), LocalDate.now());
-        } else {
-            return attendanceRepository.findAllByParentAndAttendanceDateBetween
-                    (new Parent(id), LocalDate.now().minusDays(10), LocalDate.now());
-        }
     }
 
     @Override
     public List<Attendance> findAllByDate() {
 
-        return attendanceRepository.findAllByAttendanceDateBetween
+        return attendanceRepository.findAllByAttendanceDateBetweenOrderByAttendanceDateDesc
                 (LocalDate.now(), LocalDate.now());
     }
 
