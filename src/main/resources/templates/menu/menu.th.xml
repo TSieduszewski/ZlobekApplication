@@ -13,7 +13,8 @@
           th:href="'questions/showFormForAddQuestion'" th:text="'Wyślij zapytanie do dyrekcji'"/>
     <attr sel="#questionListOfAllParentsId"
           th:href="'questions/showListOfQuestions'" th:text="'Zobacz zapytania od rodziców'"/>
-
+    <attr sel="#paymentsListOfAllParentsId"
+          th:href="'payments/listOfAllPayments'" th:text="'Zobacz płatności rodziców'"/>
 
 
 </thlogic>

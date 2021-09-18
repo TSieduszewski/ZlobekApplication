@@ -46,6 +46,9 @@ public class Parent {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Attendance> attendances;
 
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<Payment> payments;
+
     public Parent() {
     }
 
