@@ -4,11 +4,13 @@ import com.app.zlobek.dao.ParentRepository;
 import com.app.zlobek.dao.PaymentRepository;
 import com.app.zlobek.entity.Parent;
 import com.app.zlobek.entity.Payment;
+import com.app.zlobek.entity.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -64,6 +66,16 @@ public class PaymentServiceImpl implements PaymentService {
         }
 
         return paymentRepository.findAllByMonthOrderByMonthDesc(acualMonth);
+    }
+
+    @Override
+    public Payment findByParent() {
+
+        //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
+        int parentId = 1;
+
+        return paymentRepository.findByParentAndMonth(new Parent(parentId), LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-01"))));
+
     }
 
     private void addNewPaymentMonth(LocalDate actualMonth) {

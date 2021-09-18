@@ -11,4 +11,6 @@ import java.util.List;
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
     List<Payment> findAllByMonthOrderByMonthDesc(LocalDate month);
+
+    Payment findByParentAndMonth(Parent parent, LocalDate month);
 }

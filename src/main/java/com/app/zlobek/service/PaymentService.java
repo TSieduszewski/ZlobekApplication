@@ -18,4 +18,6 @@ public interface PaymentService {
     void deleteById(int id);
 
     List<Payment> findAllByMonthOrderByMonthDesc(LocalDate month);
+
+    Payment findByParent();
 }

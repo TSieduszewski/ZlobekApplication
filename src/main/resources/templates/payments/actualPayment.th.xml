@@ -1,0 +1,8 @@
+<thlogic>
+    <attr sel="#tuitionId"
+          th:text="${payment.tuition}"/>
+    <attr sel="#mealsId"
+          th:text="${payment.meals}"/>
+    <attr sel="#summaryId"
+          th:text="${payment.summary}"/>
+</thlogic>

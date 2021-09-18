@@ -26,12 +26,19 @@ public class PaymentController {
 
     @GetMapping("/listOfAllPayments")
     public String listOfAllPayments( Model model){
-//        @Valid @RequestParam("period") int period,
         int period = 0;
         List<Payment> payment = paymentService.findAllByMonthOrderByMonthDesc(LocalDate.now().minusMonths(period));
-        System.out.println("payment = " + payment.size());
         model.addAttribute("listOfPayments", payment);
 
         return "payments/listOfAllPayments";
+    }
+
+    @GetMapping("/actualPayment")
+    public String actualPayment(Model model){
+
+        Payment payment = paymentService.findByParent();
+        model.addAttribute("payment", payment);
+
+        return "payments/actualPayment";
     }
 }
