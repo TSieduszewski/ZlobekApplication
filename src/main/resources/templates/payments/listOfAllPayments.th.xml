@@ -1,0 +1,21 @@
+<thlogic>
+    <attr sel="#showPaymentsId"
+          th:each="tempPayment : ${listOfPayments}"/>
+
+    <attr sel="#parentFirstNameId"
+          th:text="${tempPayment.parent.parentFirstName}"/>
+    <attr sel="#parentLastNameId"
+          th:text="${tempPayment.parent.parentLastName}"/>
+    <attr sel="#childrenFirstNameId"
+          th:text="${tempPayment.parent.childrenFirstName}"/>
+    <attr sel="#childrenLastNameId"
+          th:text="${tempPayment.parent.childrenLastName}"/>
+    <attr sel="#tuitionId"
+          th:text="${tempPayment.tuition}"/>
+    <attr sel="#mealsId"
+          th:text="${tempPayment.meals}"/>
+    <attr sel="#summaryId"
+          th:text="${tempPayment.summary}"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>
