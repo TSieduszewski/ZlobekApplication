@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -37,7 +38,12 @@ public class PaymentController {
     public String actualPayment(Model model){
 
         Payment payment = paymentService.findByParent();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("LLLL");
+        String month = payment.getMonth().format(dateTimeFormatter);
+       // LocalDate parsedDate = LocalDate.parse(text, formatter);
+
         model.addAttribute("payment", payment);
+        model.addAttribute("month", month);
 
         return "payments/actualPayment";
     }

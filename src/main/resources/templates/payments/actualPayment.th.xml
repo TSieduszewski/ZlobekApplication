@@ -5,4 +5,8 @@
           th:text="${payment.meals}"/>
     <attr sel="#summaryId"
           th:text="${payment.summary}"/>
+    <attr sel="#monthId"
+          th:text="${month}"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>

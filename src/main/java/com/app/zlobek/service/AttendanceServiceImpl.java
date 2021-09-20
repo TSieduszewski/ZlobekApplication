@@ -35,7 +35,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<Attendance> findAllByIdAndDate() {
         //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
-        int parentId = 2;
+        int parentId = 1;
 
         int tempAttendanceListSize = attendanceRepository.findAllByParentAndAttendanceDateBetweenOrderByAttendanceDateDesc
                 (new Parent(parentId), hourGuard(), hourGuard().plusDays(10))
