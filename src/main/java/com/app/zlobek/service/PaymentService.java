@@ -1,10 +1,8 @@
 package com.app.zlobek.service;
 
-import com.app.zlobek.entity.Parent;
 import com.app.zlobek.entity.Payment;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 public interface PaymentService {

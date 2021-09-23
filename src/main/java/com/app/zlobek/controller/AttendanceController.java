@@ -4,15 +4,12 @@ import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Parent;
 import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.ParentService;
-import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/attendance")
