@@ -4,6 +4,7 @@ import com.app.zlobek.dao.AttendanceRepository;
 import com.app.zlobek.dao.ParentRepository;
 import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Parent;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,8 +64,22 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<Attendance> findAllByDate() {
 
-        return attendanceRepository.findAllByAttendanceDateBetweenOrderByAttendanceDateDesc
-                (LocalDate.now(), LocalDate.now());
+        List<Attendance> attendanceList = attendanceRepository.findByAttendanceDate(LocalDate.now());
+        List<Parent> parentList = parentRepository.findAll();
+
+        for (Attendance temp : attendanceList) {
+            parentList.remove(temp.getParent());
+        }
+
+        //w tym miejscu aktualizacja poprzez dodanie rodzicom z parentList dnia dzisiejszego
+
+        for (Parent temp : parentList) {
+            Attendance attendance = new Attendance(temp, LocalDate.now(), true);
+            attendanceRepository.save(attendance);
+        }
+
+
+        return attendanceRepository.findByAttendanceDate(LocalDate.now());
     }
 
     @Override

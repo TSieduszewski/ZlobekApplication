@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/attendance")
@@ -75,7 +76,6 @@ public class AttendanceController {
     public String showPresentDayListOfAttendanceOfAllParents(Model model){
 
         List<Attendance> parentList = attendanceService.findAllByDate();
-
         model.addAttribute("parents", parentList);
         return "attendance/attendanceListPresentDay";
     }

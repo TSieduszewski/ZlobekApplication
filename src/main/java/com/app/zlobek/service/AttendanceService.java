@@ -1,10 +1,9 @@
 package com.app.zlobek.service;
 
 import com.app.zlobek.entity.Attendance;
-import com.app.zlobek.entity.Parent;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 public interface AttendanceService {
 //sprawdzić, czy wszystkie crud-y będą potrzebne jak nie to wywalić

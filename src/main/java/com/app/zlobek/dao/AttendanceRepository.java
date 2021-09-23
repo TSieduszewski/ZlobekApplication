@@ -5,11 +5,13 @@ import com.app.zlobek.entity.Parent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public interface AttendanceRepository extends JpaRepository<Attendance, Integer> {
 
     List<Attendance> findAllByParentAndAttendanceDateBetweenOrderByAttendanceDateDesc(Parent parent, LocalDate start, LocalDate end);
-    List<Attendance> findAllByAttendanceDateBetweenOrderByAttendanceDateDesc(LocalDate start, LocalDate end);
+
+    List<Attendance> findByAttendanceDate(LocalDate date);
+
 }
