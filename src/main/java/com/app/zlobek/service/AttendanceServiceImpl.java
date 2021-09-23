@@ -63,8 +63,20 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<Attendance> findAllByDate() {
 
-        return attendanceRepository.findAllByAttendanceDateBetweenOrderByAttendanceDateDesc
-                (LocalDate.now(), LocalDate.now());
+        List<Attendance> attendanceList = attendanceRepository.findByAttendanceDate(LocalDate.now());
+        List<Parent> parentList = parentRepository.findAll();
+
+        for (Attendance temp : attendanceList) {
+            parentList.remove(temp.getParent());
+        }
+
+        for (Parent temp : parentList) {
+            Attendance attendance = new Attendance(temp, LocalDate.now(), true);
+            attendanceRepository.save(attendance);
+        }
+
+
+        return attendanceRepository.findByAttendanceDate(LocalDate.now());
     }
 
     @Override
