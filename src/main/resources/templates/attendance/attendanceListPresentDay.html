@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lista obecności - zestawienie dzisiejszego dnia</title>
@@ -13,7 +13,9 @@
         <th>Imię dziecka</th>
         <th>Nazwisko dziecka</th>
         <th>Data</th>
-        <th>Status</th>
+        <th>Zgłoszenie od rodzica</th>
+        <th>Stan faktyczny</th>
+        <th>Dopłata</th>
         </thead>
         <tbody>
         <tr id="showParentsId">
@@ -22,7 +24,13 @@
             <td id="childrenFirstNameId"/>
             <td id="childrenLastNameId"/>
             <td id="presentDataId"/>
-            <td id="presentStatusId"/>
+            <td id="presentStatusFromParentId"/>
+            <td>
+                <span id="trueChoiceId">Zmień status</span>
+                <span id="falseChoiceId"><a id="presentStatusFromDirectorId">Zmień status</a></span>
+            </td>
+
+            <td id="extraPaymentId"/>
         </tr>
         </tbody>
     </table>

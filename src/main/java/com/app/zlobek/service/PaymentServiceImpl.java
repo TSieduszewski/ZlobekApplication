@@ -2,12 +2,17 @@ package com.app.zlobek.service;
 
 import com.app.zlobek.dao.ParentRepository;
 import com.app.zlobek.dao.PaymentRepository;
+import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Parent;
 import com.app.zlobek.entity.Payment;
+import com.app.zlobek.util.global.GlobalValues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -67,10 +72,10 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment findByParent() {
+    public Payment findByParent(int idParent) {
 
         //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
-        int parentId = 1;
+        int parentId = idParent;
 
         return paymentRepository.findByParentAndMonth(new Parent(parentId), LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-01"))));
 
@@ -80,7 +85,9 @@ public class PaymentServiceImpl implements PaymentService {
         List<Parent> parentList = parentRepository.findAll();
 
         for (Parent tempParent : parentList) {
-            paymentRepository.save(new Payment(690, 0, actualMonth, 690, tempParent));
+            paymentRepository.save(new Payment(GlobalValues.tuition, 0, actualMonth, GlobalValues.tuition, tempParent));
         }
     }
+
+
 }

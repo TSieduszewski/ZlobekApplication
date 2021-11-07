@@ -9,7 +9,7 @@
     <attr sel="#attendanceDateId"
           th:text="${tempAttendance.attendanceDate}"/>
     <attr sel="#attendanceStatusId"
-          th:text="${tempAttendance.attendant} ? 'Obecność' : 'Nieobecność'"/>
+          th:text="${tempAttendance.verification} ? 'Obecność' : 'Nieobecność'"/>
     <attr sel="#backId"
           th:href="'/attendance/showAttendanceOfAllParents'" th:text="Powrót"/>
 </thlogic>
