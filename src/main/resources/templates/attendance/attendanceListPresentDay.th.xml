@@ -12,8 +12,16 @@
           th:text="${tempParent.parent.childrenLastName}"/>
     <attr sel="#presentDataId"
           th:text="${tempParent.attendanceDate}"/>
-    <attr sel="#presentStatusId"
+    <attr sel="#presentStatusFromParentId"
           th:text="${tempParent.attendant} ? 'Obecność' : 'Nieobecność'"/>
+    <attr sel="#presentStatusFromDirectorId"
+          th:href="@{/attendance/verify(verificationId=${tempParent.id})}" th:text="${tempParent.verification} ? 'Obecność' : 'Nieobecność'"/>
+    <attr sel="#extraPaymentId"
+          th:text="${tempParent.verification == tempParent.attendant} ? '0 zł' : '10 zł'"/>
+    <attr sel="#trueChoiceId"
+          th:if="${hourGuard == true}" th:text="'Obecność'"/>
+    <attr sel="#falseChoiceId"
+          th:if="${hourGuard == false}"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>

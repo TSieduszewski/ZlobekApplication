@@ -25,6 +25,9 @@ public class Attendance {
     @Column(name = "attendant")
     Boolean attendant;
 
+    @Column(name = "verification")
+    Boolean verification;
+
     public Attendance() {
     }
 
@@ -32,6 +35,13 @@ public class Attendance {
         this.parent = parent;
         this.attendanceDate = attendanceDate;
         this.attendant = attendant;
+    }
+
+    public Attendance(Parent parent, LocalDate attendanceDate, Boolean attendant, Boolean verification) {
+        this.parent = parent;
+        this.attendanceDate = attendanceDate;
+        this.attendant = attendant;
+        this.verification = verification;
     }
 
     public Attendance(LocalDate attendanceDate, Boolean attendant) {
@@ -49,7 +59,9 @@ public class Attendance {
         this.parent = parent;
         this.attendanceDate = attendanceDate;
         this.attendant = attendant;
-        System.out.println("wszystko konstruktor attendance");
     }
 
+    public Attendance(Boolean verification) {
+        this.verification = verification;
+    }
 }

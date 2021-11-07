@@ -12,6 +12,8 @@ public interface AttendanceService {
 
     List<Attendance> findAllById(int id);
 
+    List<Attendance> findAllByIdFromLastMonth(int id);
+
     List<Attendance> findAllByDate();
 
     Attendance findById(int id);

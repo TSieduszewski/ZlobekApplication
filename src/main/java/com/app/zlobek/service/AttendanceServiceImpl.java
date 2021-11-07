@@ -43,7 +43,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         if (tempAttendanceListSize < 10) {
             for (int i = tempAttendanceListSize; i < 10; i++) {
-                Attendance attendance = new Attendance(new Parent(parentId), hourGuard().plusDays(i), true);
+                Attendance attendance = new Attendance(new Parent(parentId), hourGuard().plusDays(i), true, true);
                 attendanceRepository.save(attendance);
             }
         }
@@ -71,7 +71,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
 
         for (Parent temp : parentList) {
-            Attendance attendance = new Attendance(temp, LocalDate.now(), true);
+            Attendance attendance = new Attendance(temp, LocalDate.now(), true, true);
             attendanceRepository.save(attendance);
         }
 
@@ -91,6 +91,12 @@ public class AttendanceServiceImpl implements AttendanceService {
             throw new RuntimeException("Nie znalazłem statusu");
         }
         return tempAttendaceStatus;
+    }
+
+    @Override
+    public List<Attendance> findAllByIdFromLastMonth(int id) {
+        return attendanceRepository.findAllByParentAndAttendanceDateBetweenOrderByAttendanceDateDesc
+                (new Parent(id), LocalDate.now().withDayOfMonth(1), LocalDate.now());
     }
 
     @Override

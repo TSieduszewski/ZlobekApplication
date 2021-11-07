@@ -1,5 +1,6 @@
 package com.app.zlobek.service;
 
+import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Payment;
 
 import java.time.LocalDate;
@@ -17,5 +18,7 @@ public interface PaymentService {
 
     List<Payment> findAllByMonthOrderByMonthDesc(LocalDate month);
 
-    Payment findByParent();
+    Payment findByParent(int idParent);
+
+
 }
