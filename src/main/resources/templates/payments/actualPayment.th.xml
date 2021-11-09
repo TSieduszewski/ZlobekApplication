@@ -7,6 +7,12 @@
           th:text="${payment.summary}"/>
     <attr sel="#monthId"
           th:text="${month}"/>
+    <attr sel="#showAttendanceId"
+          th:each="tempAttendance : ${attendance}"/>
+    <attr sel="#attendanceDateId"
+          th:text="${tempAttendance.attendanceDate}"/>
+    <attr sel="#attendanceStatusId"
+          th:text="${tempAttendance.verification == tempAttendance.attendant} ? '0 zł' : '10 zł'"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>

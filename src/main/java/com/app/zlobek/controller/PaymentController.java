@@ -43,6 +43,7 @@ public class PaymentController {
     public String actualPayment(Model model) {
 
         Payment payment = paymentService.findByParent(GlobalValues.idParent);
+        List<Attendance> attendanceList = attendanceService.findAllByIdFromLastMonth(payment.getParent().getId());
 
         //tu na miękko wrzuca nowe płatności w metodzie, którą wywołują zasadniczo rodzice.
         //trzeba to zmienić tak, aby aplikacja w momencie działania sama aktualizowała tabele np na początku miesiąca
@@ -57,6 +58,7 @@ public class PaymentController {
 
         model.addAttribute("payment", payment);
         model.addAttribute("month", month);
+        model.addAttribute("attendance", attendanceList);
 
         return "payments/actualPayment";
     }
@@ -66,7 +68,6 @@ public class PaymentController {
         int mealPaymentCounter = 0;
         List<Payment> p = paymentService.findAllByMonthOrderByMonthDesc(LocalDate.now().minusMonths(period));
 
-//        System.out.println("temp = " + temp.getParent().getId());
         for (Payment temp : p) {
             List<Attendance> a = attendanceService.findAllByIdFromLastMonth(temp.getParent().getId());
             for (Attendance temp2 : a) {
@@ -79,8 +80,6 @@ public class PaymentController {
             paymentService.save(temp);
             mealPaymentCounter = 0;
         }
-
-//        System.out.println("licznik " + mealPaymentCounter);
 
         return paymentService.findAllByMonthOrderByMonthDesc(LocalDate.now().minusMonths(period));
     }
