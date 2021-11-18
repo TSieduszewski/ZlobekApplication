@@ -1,12 +1,22 @@
 <thlogic>
+    <attr sel="#check"
+          th:if="${paymentPreviousMonth != null}"/>
     <attr sel="#tuitionId"
           th:text="${payment.tuition}"/>
+    <attr sel="#previousMonthTuitionId"
+          th:text="${paymentPreviousMonth.tuition}"/>
     <attr sel="#mealsId"
           th:text="${payment.meals}"/>
+    <attr sel="#previousMonthMealsId"
+          th:text="${paymentPreviousMonth.meals}"/>
     <attr sel="#summaryId"
           th:text="${payment.summary}"/>
+    <attr sel="#previousMonthSummaryId"
+          th:text="${paymentPreviousMonth.summary}"/>
     <attr sel="#monthId"
           th:text="${month}"/>
+    <attr sel="#previousMonthId"
+          th:text="${previousMonth}"/>
     <attr sel="#showAttendanceId"
           th:each="tempAttendance : ${attendance}"/>
     <attr sel="#attendanceDateId"

@@ -7,6 +7,7 @@ import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.ParentService;
 import com.app.zlobek.service.PaymentService;
 import com.app.zlobek.util.global.GlobalValues;
+import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,10 +98,8 @@ public class AttendanceController {
     public String showPresentDayListOfAttendanceOfAllParents(Model model){
         hourGuard = LocalTime.now().isBefore(LocalTime.of(7, 0, 0));
         List<Attendance> parentList = attendanceService.findAllByDate();
-
         model.addAttribute("parents", parentList);
         model.addAttribute("hourGuard", hourGuard);
-
         return "attendance/attendanceListPresentDay";
     }
 }

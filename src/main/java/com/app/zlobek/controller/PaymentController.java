@@ -42,22 +42,33 @@ public class PaymentController {
     @GetMapping("/actualPayment")
     public String actualPayment(Model model) {
 
-        Payment payment = paymentService.findByParent(GlobalValues.idParent);
+        Payment payment = paymentService.findByParent(GlobalValues.idParent, GlobalValues.actualMonth);
+        Payment paymentPreviousMonth = paymentService.findByParent(GlobalValues.idParent, GlobalValues.previousMonth);
         List<Attendance> attendanceList = attendanceService.findAllByIdFromLastMonth(payment.getParent().getId());
+        String previousMonth ="";
 
         //tu na miękko wrzuca nowe płatności w metodzie, którą wywołują zasadniczo rodzice.
         //trzeba to zmienić tak, aby aplikacja w momencie działania sama aktualizowała tabele np na początku miesiąca
         //ZMIEN TO KONIECZNIE BO NIE ZACHOWANA JEST ZASADA HERMETYZACJI
         if (Objects.isNull(payment)) {
             listOfAllPayments(model);
-            payment = paymentService.findByParent(GlobalValues.idParent);
+            payment = paymentService.findByParent(GlobalValues.idParent, GlobalValues.actualMonth);
         }
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("LLLL");
+
         String month = payment.getMonth().format(dateTimeFormatter);
+
+        try {
+            previousMonth = paymentPreviousMonth.getMonth().format(dateTimeFormatter);
+        } catch (NullPointerException e){
+            previousMonth = "";
+        }
 
         model.addAttribute("payment", payment);
         model.addAttribute("month", month);
+        model.addAttribute("paymentPreviousMonth", paymentPreviousMonth);
+        model.addAttribute("previousMonth", previousMonth);
         model.addAttribute("attendance", attendanceList);
 
         return "payments/actualPayment";
@@ -75,8 +86,8 @@ public class PaymentController {
                     mealPaymentCounter++;
                 }
             }
-            temp.setMeals(mealPaymentCounter*GlobalValues.singleMealPrice);
-            temp.setSummary(temp.getTuition()+temp.getMeals());
+            temp.setMeals(mealPaymentCounter * GlobalValues.singleMealPrice);
+            temp.setSummary(temp.getTuition() + temp.getMeals());
             paymentService.save(temp);
             mealPaymentCounter = 0;
         }

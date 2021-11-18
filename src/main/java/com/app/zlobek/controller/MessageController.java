@@ -1,9 +1,12 @@
 package com.app.zlobek.controller;
 
 
+import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Message;
+import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.MessageService;
 import com.app.zlobek.service.ParentService;
+import com.app.zlobek.util.global.GlobalValues;
 import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +25,13 @@ public class MessageController {
 
     private ParentService parentService;
 
+    private AttendanceService attendanceService;
+
     @Autowired
-    public MessageController(MessageService messageService, ParentService parentService) {
+    public MessageController(MessageService messageService, ParentService parentService, AttendanceService attendanceService) {
         this.messageService = messageService;
         this.parentService = parentService;
+        this.attendanceService = attendanceService;
     }
 
     @GetMapping("/showFormForAddMessage")
@@ -68,6 +74,18 @@ public class MessageController {
         model.addAttribute("listOfMessagesFromParents", listOfMessagesFromParents);
 
         return "parents/listOfMessagesFromDirector";
+    }
+    @GetMapping("/sendPredefinedMessage")
+    public String sendPredefinedMessage(){
+
+        List<Attendance> listOfParents = attendanceService.findAllByParentFromLastDay();
+        for(Attendance temp : listOfParents){
+
+            if(temp.getAttendant() != temp.getVerification()){
+                messageService.save(new Message(GlobalValues.extraFee, LocalDateTime.now(), temp.getParent()));
+            }
+        }
+        return "redirect:/attendance/showPresentDayListOfAttendanceOfAllParents";
     }
 
 }

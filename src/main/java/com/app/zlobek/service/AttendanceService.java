@@ -16,6 +16,8 @@ public interface AttendanceService {
 
     List<Attendance> findAllByDate();
 
+    List<Attendance> findAllByParentFromLastDay();
+
     Attendance findById(int id);
 
     void save(Attendance attendance);

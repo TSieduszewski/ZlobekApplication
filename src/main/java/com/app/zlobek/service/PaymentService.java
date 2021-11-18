@@ -18,7 +18,7 @@ public interface PaymentService {
 
     List<Payment> findAllByMonthOrderByMonthDesc(LocalDate month);
 
-    Payment findByParent(int idParent);
+    Payment findByParent(int idParent, LocalDate date);
 
 
 }

@@ -13,4 +13,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
 
     List<Attendance> findByAttendanceDate(LocalDate date);
 
+    List<Attendance> findAllByAttendanceDateBetween(LocalDate start, LocalDate end);
+
 }

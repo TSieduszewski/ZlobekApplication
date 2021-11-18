@@ -120,4 +120,10 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
 
     }
+
+    @Override
+    public List<Attendance> findAllByParentFromLastDay() {
+
+        return attendanceRepository.findAllByAttendanceDateBetween(LocalDate.now(), LocalDate.now());
+    }
 }
