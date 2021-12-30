@@ -75,13 +75,14 @@ public class MessageController {
 
         return "parents/listOfMessagesFromDirector";
     }
+
     @GetMapping("/sendPredefinedMessage")
-    public String sendPredefinedMessage(){
+    public String sendPredefinedMessage() {
 
         List<Attendance> listOfParents = attendanceService.findAllByParentFromLastDay();
-        for(Attendance temp : listOfParents){
+        for (Attendance temp : listOfParents) {
 
-            if(temp.getAttendant() != temp.getVerification()){
+            if (temp.getAttendant() != temp.getVerification()) {
                 messageService.save(new Message(GlobalValues.extraFee, LocalDateTime.now(), temp.getParent()));
             }
         }
