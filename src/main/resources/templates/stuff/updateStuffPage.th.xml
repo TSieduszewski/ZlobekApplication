@@ -1,0 +1,21 @@
+<thlogic>
+    <attr sel="#formId"
+          action="#" th:action="@{/babystuff/save}" method="POST"/>
+    <attr sel="#parentIdId"
+          type="hidden" th:field="${babyStuff.id}"/>
+    <attr sel="#dryWipesId"
+          type="text" th:field="${babyStuff.dryWipes}" th:placeholder="${babyStuff.dryWipes}"/>
+    <attr sel="#wetWipesId"
+          type="text" th:field="${babyStuff.wetWipes}" th:placeholder="${babyStuff.wetWipes}"/>
+    <attr sel="#diapersId"
+          type="text" th:field="${babyStuff.diapers}" th:placeholder="${babyStuff.diapers}"/>
+    <attr sel="#towelsId"
+          type="text" th:field="${babyStuff.towels}" th:placeholder="${babyStuff.towels}"/>
+    <attr sel="#bibsId"
+          type="text" th:field="${babyStuff.bibs}" th:placeholder="${babyStuff.bibs}"/>
+
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+    <attr sel="#backId"
+          th:href="'/babystuff/showAllStuff'" th:text="Powrót"/>
+</thlogic>
