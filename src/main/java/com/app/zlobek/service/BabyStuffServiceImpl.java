@@ -2,6 +2,7 @@ package com.app.zlobek.service;
 
 import com.app.zlobek.dao.BabyStuffRepository;
 import com.app.zlobek.entity.BabyStuff;
+import com.app.zlobek.util.global.GlobalValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,8 @@ public class BabyStuffServiceImpl implements BabyStuffService {
 
     @Override
     public BabyStuff findById(int id) {
+        //pamiętać, żeby zrobić, aby przy logowaniu globalną wartość idParent ustawiać w zależności, kto się zaloguje
+
         Optional<BabyStuff> result = babyStuffRepository.findById(id);
 
         BabyStuff tempBabyStuff = null;

@@ -2,6 +2,8 @@ package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.BabyStuff;
 import com.app.zlobek.service.BabyStuffService;
+import com.app.zlobek.util.global.GlobalValues;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,6 +86,16 @@ public class BabyStuffController {
         return "redirect:/babystuff/showAllStuff";
 
     }
+
+    @GetMapping("/showParentStuff")
+    private String showSingleParentStuff(Model model){
+
+        BabyStuff parentStuff = babyStuffService.findById(GlobalValues.idParent);
+        model.addAttribute("parentStuff", parentStuff);
+
+        return "stuff/listOfParentStuff";
+    }
+
 
     private Integer stuffGuard(Integer stuffGuardCounter) {
 

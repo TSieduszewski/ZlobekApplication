@@ -1,0 +1,17 @@
+<thlogic>
+
+    <attr sel="#dryWipesId"
+          th:text="${parentStuff.dryWipes}"/>
+    <attr sel="#wetWipesId"
+          th:text="${parentStuff.wetWipes}"/>
+    <attr sel="#diapersId"
+          th:text="${parentStuff.diapers}"/>
+    <attr sel="#towelsId"
+          th:text="${parentStuff.towels}"/>
+    <attr sel="#bibsId"
+          th:text="${parentStuff.bibs}"/>
+
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+
+</thlogic>
