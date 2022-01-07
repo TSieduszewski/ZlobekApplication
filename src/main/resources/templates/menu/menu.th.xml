@@ -17,5 +17,9 @@
           th:href="'payments/listOfAllPayments'" th:text="'Zobacz płatności rodziców'"/>
     <attr sel="#paymentsId"
           th:href="'payments/actualPayment'" th:text="'Zobacz swoje płatności'"/>
+    <attr sel="#babyStuffListId"
+          th:href="'babystuff/showAllStuff'" th:text="'Zobacz zestawienie rzeczy rodziców'"/>
+    <attr sel="#parentStuffId"
+          th:href="'babystuff/showParentStuff'" th:text="'Zobacz zestawienie swoich rzeczy'"/>
 
 </thlogic>
