@@ -1,0 +1,21 @@
+<thlogic>
+
+
+    <attr sel="#babysitterNameId"
+          th:text="${babysitter.name}"/>
+
+    <attr sel="#showBabysittersShiftsId"
+          th:each="tempBabysitter : ${babysitter.shifts}"/>
+    <attr sel="#dateId"
+          th:text="${tempBabysitter.startShift.toLocalDate()}"/>
+    <attr sel="#startShiftId"
+          th:text="${tempBabysitter.startShift.toLocalTime()}"/>
+    <attr sel="#endShiftId"
+          th:text="${tempBabysitter.endShift.toLocalTime()}"/>
+    <attr sel="#addShiftId"
+          th:href="@{/babysitter/addShift(babysitterId=${babysitter.id})}" th:text="'Dodaj zmianę'"/>
+
+
+    <attr sel="#backId"
+          th:href="@{~/shift/showAllShifts}" th:text="Powrót"/>
+</thlogic>

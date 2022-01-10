@@ -1,0 +1,15 @@
+<thlogic>
+    <attr sel="#showShiftsId"
+          th:each="tempShifts : ${shiftList}"/>
+
+    <attr sel="#babysitterNameId"
+          th:href="@{/babysitter/showSingleBabysitter(babysitterId=${tempShifts.babysitter.id})}" th:text="${tempShifts.babysitter.name}"/>
+    <attr sel="#dateId"
+          th:text="${tempShifts.startShift.toLocalDate()}"/>
+    <attr sel="#startShiftId"
+          th:text="${tempShifts.startShift.toLocalTime()}"/>
+    <attr sel="#endShiftId"
+          th:text="${tempShifts.endShift.toLocalTime()}"/>
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>

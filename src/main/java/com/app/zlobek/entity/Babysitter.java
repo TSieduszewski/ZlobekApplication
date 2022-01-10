@@ -2,11 +2,9 @@ package com.app.zlobek.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,14 +12,12 @@ import java.time.LocalDateTime;
 public class Babysitter {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "start_shift")
-    private LocalDateTime startShift;
-
-    @Column(name = "end_shift")
-    private LocalDateTime endShift;
+    @OneToMany(mappedBy = "babysitter", cascade = CascadeType.ALL)
+    private List<Shift> shifts;
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shift Form</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/babysitter/saveShift}" th:object="${shift}" method="POST">
+    <input type="hidden" th:field="*{idOfBabysitter}">
+    <input type="datetime-local" th:field="*{shift.startShift}">
+    <input type="datetime-local" th:field="*{shift.endShift}">
+    <input type="submit">
+</form>
+</body>
+</html>
