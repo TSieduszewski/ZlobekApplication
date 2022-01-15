@@ -1,7 +1,6 @@
 package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Babysitter;
-import com.app.zlobek.entity.Shift;
 import com.app.zlobek.service.BabysitterService;
 import com.app.zlobek.service.ShiftService;
 import com.app.zlobek.util.shift.ShiftWithBabysitter;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,9 +26,17 @@ public class BabysitterController {
         this.shiftService = shiftService;
     }
 
+    @GetMapping("/showAllBabysitters")
+    public String showAllBabysitters(Model model) {
+        List<Babysitter> babysitters = babysitterService.findAllBabysitters();
+
+        model.addAttribute("babysitters", babysitters);
+
+        return "babysittersShifts/showAllBabysitters";
+    }
 
     @GetMapping("/showSingleBabysitter")
-    public String showSingleBabysitter(@RequestParam("babysitterId") int id, Model model){
+    public String showSingleBabysitter(@RequestParam("babysitterId") int id, Model model) {
         Babysitter babysitter = babysitterService.findById(id);
 
         Collections.sort(babysitter.getShifts());
@@ -39,21 +45,42 @@ public class BabysitterController {
         return "babysittersShifts/showSingleBabysitter";
     }
 
-    @GetMapping("/addShift")
-    public String addShift(@RequestParam("babysitterId") int id, Model model){
+    @GetMapping("/addBabysitter")
+    public String addBabysitter(Model model) {
 
-        ShiftWithBabysitter shift = new ShiftWithBabysitter(id);
+        Babysitter babysitter = new Babysitter();
 
-        model.addAttribute("shift", shift);
+        model.addAttribute("babysitter", babysitter);
 
-        return "babysittersShifts/shiftForm";
+        return "babysittersShifts/addBabysitter";
     }
 
-    @PostMapping("/saveShift")
-    public String saveShift(@Valid @ModelAttribute("shift") ShiftWithBabysitter shift){
+    @GetMapping("/updateBabysitter")
+    public String updateBabysitter(@RequestParam("babysitterId") int id, Model model) {
 
-        shift.getShift().setBabysitter(babysitterService.findById(shift.getIdOfBabysitter()));
-        shiftService.save(shift.getShift());
-        return "redirect:/babysitter/showSingleBabysitter?babysitterId="+shift.getIdOfBabysitter();
+        Babysitter babysitter = babysitterService.findById(id);
+
+        model.addAttribute("babysitter", babysitter);
+
+        return "babysittersShifts/addBabysitter";
     }
+
+    @GetMapping("/deleteBabysitter")
+    public String deleteBabysitter(@RequestParam("babysitterId") int id) {
+
+        babysitterService.deleteById(id);
+
+        return "redirect:/babysitter/showAllBabysitters";
+    }
+
+
+
+    @PostMapping("/saveBabysitter")
+    public String saveBabysitter(@Valid @ModelAttribute("babysitter") Babysitter babysitter) {
+
+        babysitterService.save(babysitter);
+        return "redirect:/babysitter/showAllBabysitters";
+    }
+
+
 }

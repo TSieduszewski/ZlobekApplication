@@ -13,9 +13,9 @@
     <attr sel="#endShiftId"
           th:text="${tempBabysitter.endShift.toLocalTime()}"/>
     <attr sel="#addShiftId"
-          th:href="@{/babysitter/addShift(babysitterId=${babysitter.id})}" th:text="'Dodaj zmianę'"/>
-
+          th:href="@{/shift/addShift(babysitterId=${babysitter.id})}" th:text="'Dodaj zmianę'"/>
 
     <attr sel="#backId"
-          th:href="@{~/shift/showAllShifts}" th:text="Powrót"/>
+          th:action="action" type="button" value="Powrót" onclick="history.go(-1);"/>
+
 </thlogic>

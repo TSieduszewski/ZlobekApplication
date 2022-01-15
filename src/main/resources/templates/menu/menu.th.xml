@@ -23,7 +23,8 @@
           th:href="'babystuff/showParentStuff'" th:text="'Zobacz zestawienie swoich rzeczy'"/>
     <attr sel="#babysitterListId"
           th:href="'/shift/showAllShifts'" th:text="'Zobacz grafik opiekunek'"/>
-
+    <attr sel="#allBabysittersListId"
+          th:href="'/babysitter/showAllBabysitters'" th:text="'Zobacz wszystkie opiekunki'"/>
 
 
 </thlogic>

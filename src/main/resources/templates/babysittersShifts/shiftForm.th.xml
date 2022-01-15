@@ -1,0 +1,14 @@
+<thlogic>
+    <attr sel="#shiftFormId"
+          action="#" th:action="@{/shift/saveShift}" th:object="${shift}" method="POST"/>
+
+    <attr sel="#babysitterIdId"
+          type="hidden" th:field="*{idOfBabysitter}"/>
+    <attr sel="#startShiftId"
+          type="datetime-local" th:field="*{shift.startShift}"/>
+    <attr sel="#endShiftId"
+          type="datetime-local" th:field="*{shift.endShift}"/>
+
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>
