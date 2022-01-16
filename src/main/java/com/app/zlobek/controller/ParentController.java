@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -42,4 +43,39 @@ public class ParentController {
         return "parents/messages";
     }
 
+    @GetMapping("/addParent")
+    public String addParent(Model model){
+
+        Parent parent = new Parent();
+
+        model.addAttribute("parent", parent);
+
+        return "parents/parentsForm";
+    }
+
+    @GetMapping("/updateParent")
+    public String updateParent(@RequestParam("parentId") int id, Model model){
+
+        Parent parent = parentService.findById(id);
+
+        model.addAttribute("parent", parent);
+
+        return "parents/parentsForm";
+    }
+
+    @PostMapping("/saveParent")
+    public String saveParent(@Valid @ModelAttribute("parent") Parent parent){
+
+        parentService.save(parent);
+
+        return "redirect:/parents/list";
+    }
+
+    @GetMapping("/deleteParent")
+    public String deleteParent(@RequestParam("parentId") int id){
+
+        parentService.deleteById(id);
+
+        return "redirect:/parents/list";
+    }
 }
