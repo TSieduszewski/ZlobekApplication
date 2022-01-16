@@ -14,6 +14,10 @@
           th:text="${tempBabysitter.endShift.toLocalTime()}"/>
     <attr sel="#addShiftId"
           th:href="@{/shift/addShift(babysitterId=${babysitter.id})}" th:text="'Dodaj zmianę'"/>
+    <attr sel="#editShiftId"
+          th:href="@{/shift/updateShift(shiftId=${tempBabysitter.id})}" th:text="'Edytuj'"/>
+    <attr sel="#deleteShiftId"
+          th:href="@{/shift/deleteShift(shiftId=${tempBabysitter.id})}" th:text="'Usuń'"/>
 
     <attr sel="#backId"
           th:action="action" type="button" value="Powrót" onclick="history.go(-1);"/>

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -34,5 +35,25 @@ public class ShiftServiceImpl implements ShiftService {
     @Override
     public void save(Shift shift) {
         shiftRepository.save(shift);
+    }
+
+    @Override
+    public Shift findById(int id) {
+        Optional<Shift> result = shiftRepository.findById(id);
+
+        Shift shift = null;
+
+        if(result.isPresent()){
+            shift = result.get();
+        } else {
+            throw new RuntimeException("Nie znalazłem zmiany");
+        }
+
+        return shift;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        shiftRepository.deleteById(id);
     }
 }

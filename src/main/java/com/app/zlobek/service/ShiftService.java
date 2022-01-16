@@ -9,8 +9,12 @@ public interface ShiftService {
 
     List<Shift> findAllShifts();
 
+    Shift findById(int id);
+
     List<Shift> findAllShiftsOfSingleBabysitter(Babysitter babysitter);
 
     void save(Shift shift);
+
+    void deleteById(int id);
 
 }

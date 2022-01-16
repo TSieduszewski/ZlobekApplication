@@ -1,6 +1,5 @@
 package com.app.zlobek.controller;
 
-import com.app.zlobek.entity.Babysitter;
 import com.app.zlobek.entity.Shift;
 import com.app.zlobek.service.BabysitterService;
 import com.app.zlobek.service.ShiftService;
@@ -27,7 +26,7 @@ public class ShiftController {
     }
 
     @GetMapping("/showAllShifts")
-    public String showAllShifts(Model model){
+    public String showAllShifts(Model model) {
 
         List<Shift> shiftList = shiftService.findAllShifts();
         model.addAttribute("shiftList", shiftList);
@@ -45,11 +44,34 @@ public class ShiftController {
         return "babysittersShifts/shiftForm";
     }
 
+    @GetMapping("/updateShift")
+    public String updateShift(@RequestParam("shiftId") int id, Model model) {
+
+        Shift tempShift = shiftService.findById(id);
+        ShiftWithBabysitter shift = new ShiftWithBabysitter(tempShift, tempShift.getBabysitter().getId());
+        model.addAttribute("shift", shift);
+
+        return "babysittersShifts/shiftForm";
+    }
+
+    @GetMapping("/deleteShift")
+    public String deleteShift(@RequestParam("shiftId") int id) {
+        Shift shift = shiftService.findById(id);
+        shiftService.deleteById(id);
+
+        return "redirect:/babysitter/showSingleBabysitter?babysitterId=" + shift.getBabysitter().getId();
+    }
+
     @PostMapping("/saveShift")
     public String saveShift(@Valid @ModelAttribute("shift") ShiftWithBabysitter shift) {
 
-        shift.getShift().setBabysitter(babysitterService.findById(shift.getIdOfBabysitter()));
-        shiftService.save(shift.getShift());
+        if(shift.getIdOfBabysitter() != 0){
+            shift.getShift().setBabysitter(babysitterService.findById(shift.getIdOfBabysitter()));
+            shiftService.save(shift.getShift());
+        } else {
+            shiftService.save(shift.getShift());
+        }
         return "redirect:/babysitter/showSingleBabysitter?babysitterId=" + shift.getIdOfBabysitter();
     }
+
 }

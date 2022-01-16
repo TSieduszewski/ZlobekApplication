@@ -23,7 +23,7 @@ public class Shift implements Comparable<Shift> {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime endShift;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_babysitter")
     private Babysitter babysitter;
 

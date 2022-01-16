@@ -4,6 +4,8 @@
 
     <attr sel="#babysitterIdId"
           type="hidden" th:field="*{idOfBabysitter}"/>
+    <attr sel="#shiftId"
+          type="hidden" th:field="*{shift.id}"/>
     <attr sel="#startShiftId"
           type="datetime-local" th:field="*{shift.startShift}"/>
     <attr sel="#endShiftId"
