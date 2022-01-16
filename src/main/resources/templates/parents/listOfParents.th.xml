@@ -38,6 +38,13 @@
           type="text" th:field="${listOfParents.message.message}"/>
     <attr sel="#mainFormId"
           th:action="@{/messages/save}" method="POST"/>
+    <attr sel="#addParent"
+          th:href="@{/parents/addParent}" th:text="'Dodaj nowych rodziców'"/>
+    <attr sel="#editParentId"
+          th:href="@{/parents/updateParent(parentId=${tempParent.id})}" th:text="'Edytuj'"/>
+    <attr sel="#deleteParentId"
+          th:href="@{/parents/deleteParent(parentId=${tempParent.id})}" th:text="'Usuń'"/>
+
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>
