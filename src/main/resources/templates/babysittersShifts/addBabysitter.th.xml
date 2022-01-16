@@ -1,0 +1,12 @@
+<thlogic>
+    <attr sel="#shiftFormId"
+          action="#" th:action="@{/babysitter/saveBabysitter}" th:object="${babysitter}" method="POST"/>
+
+    <attr sel="#babysitterIdId"
+          type="hidden" th:field="*{id}"/>
+    <attr sel="#babysitterNameId"
+          type="text" th:field="*{name}"/>
+
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>

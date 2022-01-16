@@ -1,0 +1,18 @@
+<thlogic>
+    <attr sel="#showBabysittersId"
+          th:each="tempBabysitters : ${babysitters}"/>
+
+    <attr sel="#babysitterNameId"
+          th:href="@{/babysitter/showSingleBabysitter(babysitterId=${tempBabysitters.id})}" th:text="${tempBabysitters.name}"/>
+    <attr sel="#addBabysitterId"
+          th:href="@{/babysitter/addBabysitter}" th:text="'Dodaj opiekunkę'"/>
+    <attr sel="#editBabysitterId"
+          th:href="@{/babysitter/updateBabysitter(babysitterId=${tempBabysitters.id})}" th:text="'Edytuj'"/>
+    <attr sel="#deleteBabysitterId"
+          th:href="@{/babysitter/deleteBabysitter(babysitterId=${tempBabysitters.id})}" th:text="'Usuń'"/>
+
+
+
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer::footerFragment}"/>
+</thlogic>
