@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.tymeleaf.org">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>Wiadomości do rodziców</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
+<div>
+    <i class="bi bi-card-checklist mx-3" style="font-size: 2rem; color: cornflowerblue;">&emsp;Lista rodziców i wiadomości do rodziców</i>
+</div>
 
 <form id="mainFormId">
     <div>
-        <table>
-            <thead>
-            <td>Zaznaczenie</td>
+        <table class="table table-sm table-striped table-hover">
+            <thead class="bg-primary bg-gradient text-white shadow ">
+            <th>Zaznaczenie</th>
             <th>Imię rodzica</th>
             <th>Nazwisko rodzica</th>
             <th>Imię dziecka</th>
@@ -33,15 +39,19 @@
                 <td id="addressId"/>
                 <td id="phoneNumberId"/>
                 <td id="emailId"/>
-                <td><a id="showMessagesId"/></td>
                 <td>
-                    <a id="sendMessageButtonId"></a>
+                    <a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="showMessagesId"/>
                 </td>
                 <td>
-                    <a id="editParentId"/>
-                <td/>
+                    <a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="sendMessageButtonId" data-target="#theModal" data-toggle="modal"></a>
+
+
+                </td>
                 <td>
-                    <a id="deleteParentId"/>
+                    <a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="editParentId"/>
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="deleteParentId"/>
                 </td>
             </tr>
             </tbody>
@@ -49,56 +59,74 @@
 
     </div>
 
-    <div>
-        <div>
-            <input id="listOfParentsMessageIdId"/>
-        </div>
 
-        <div>
-            <input id="listOfParentsMessageMessageId"/>
-        </div>
-    </div>
-
-
-    <div>
-        <button type="submit">Wyślij do zaznaczonych</button>
-    </div>
-</form>
 <p></p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div>
+                <div>
+                    <input id="listOfParentsMessageIdId"/>
+                </div>
+
+                <div class="form-floating">
+                    <textarea class="form-control" input id="listOfParentsMessageMessageId" style="height: 100%" placeholder="''"></textarea>
+                    <label for="messageLabel">Wpisz wiadomość do zaznaczonych rodziców</label>
+                </div>
+
+            </div>
 
 
-
-
-<form id="formSendToAllId">
-
-    <div>
-        <tr id="showParentsId">
-            <td><input id="tempParentIdId"></td>
-        </tr>
-    </div>
-
-    <div>
-        <div>
-            <input id="listOfParentsMessageIdId"/>
-        </div>
-        <div>
-            <input id="listOfParentsMessageMessageId">
-        </div>
-    </div>
-
-
-    <div>
-        <button type="submit">Wyślij do wszystkich</button>
-    </div>
+            <div>
+                <button type="submit" class="btn btn-primary btn-lg mt-2" style="width: 100%">Wyślij do zaznaczonych</button>
+            </div>
 </form>
+        </div>
+        <div class="col-sm">
+            <form id="formSendToAllId">
 
-<div>
-    <a id="addParent"/>
+                <div>
+                    <tr id="showParentsId">
+                        <td><input id="tempParentIdId"></td>
+                    </tr>
+                </div>
+
+                <div>
+                    <div>
+                        <input id="listOfParentsMessageIdId"/>
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" input id="listOfParentsMessageMessageId" style="height: 100%" placeholder="''"></textarea>
+                        <label for="messageLabel">Wpisz wiadomość do wszystkich rodziców</label>
+                    </div>
+<!--                    <div>-->
+<!--                        <input id="listOfParentsMessageMessageId">-->
+<!--                    </div>-->
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary btn-lg mt-2" style="width: 100%">Wyślij do wszystkich</button>
+                </div>
+<!--                <div>-->
+<!--                    <button type="submit">Wyślij do wszystkich</button>-->
+<!--                </div>-->
+            </form>
+        </div>
+        <div class="col-sm">
+            <div>
+                <a class="btn btn-primary btn-lg" style="width: 100%" role="button" id="addParent"/>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 <footer id="footerId">
     <p>Footer content</p>
 </footer>
+
+
 
 </body>
 </html>
