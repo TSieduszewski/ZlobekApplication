@@ -8,7 +8,7 @@
     <attr sel="#dateId"
           type="hidden" th:field="${question.date}"/>
     <attr sel="#messageId"
-          type="text" th:field="${question.message}"/>
+          type="text" th:field="${question.message}" id="messageLabel"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 

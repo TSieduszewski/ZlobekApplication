@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
-<div>
-    <h3>Przeglądasz zestawienie wiadomości rodzica: </h3>
-    <h1 id="parentFirstNameAndLastNameId"/>
 
+<div>
+    <i class="bi bi-person-circle mx-3" style="font-size: 2rem; color: cornflowerblue;">&emsp;Przeglądasz zestawienie
+        wiadomości rodzica: <span class="fw-bold" id="parentFirstNameAndLastNameId"/></i>
 </div>
 <div>
-    <table>
-        <thead>
+    <table class="table table-sm table-striped table-hover">
+        <thead class="bg-primary bg-gradient text-white shadow ">
         <th>Imię dziecka</th>
         <th>Nazwisko dziecka</th>
         <th>Adres zamieszkania</th>
@@ -29,25 +32,39 @@
         </tr>
         </tbody>
     </table>
-</div>
-
-<div>
-    <table>
-        <thead>
+    <p></p>
+    <table class="table table-sm table-striped table-hover">
+        <thead class="bg-primary bg-gradient text-white shadow ">
         <th>Data wiadomości</th>
         <th>Treść wiadomości</th>
         </thead>
         <tbody>
         <tr id="showMessagesId">
-            <td id="messageDateId"/>
+            <td class="w-25" id="messageDateId"/>
             <td id="messageId"/>
         </tr>
         </tbody>
     </table>
 
+    <div class="container-md-auto">
+        <div class="row justify-content-center">
+            <div class="col-md-auto" id="totalPagesId">
+                <span id="ifStatementId">
+                    <a id="pageId" class="btn btn-info text-decoration-none text-white" role="button"></a>
+                </span>
+                <span th:if="${pageNumber!=messages.number + 1}">
+                    <a id="pageId" class="btn btn-primary text-decoration-none text-white" role="button"></a>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
 </div>
-<div>
-    <a id="backId"/>
+
+
+<div class="col" style="width: 100%">
+    <a class="btn btn-danger btn-lg mt-2" style="width: 100%" role="button" id="backId"/>
 </div>
 </body>
 </html>

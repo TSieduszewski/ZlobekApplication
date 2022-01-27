@@ -25,6 +25,8 @@
           th:href="'/shift/showAllShifts'" th:text="'Zobacz grafik opiekunek'"/>
     <attr sel="#allBabysittersListId"
           th:href="'/babysitter/showAllBabysitters'" th:text="'Zobacz wszystkie opiekunki'"/>
+    <attr sel="#imageId"
+          th:src="@{/images/azlogo.png}"/>
 
 
 </thlogic>

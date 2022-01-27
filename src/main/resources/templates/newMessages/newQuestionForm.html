@@ -1,32 +1,40 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.tymeleaf.org">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>New Message Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
-<div>
 
+<div class="container-fluid border border-primary rounded m-2 p-2 bg-light" style="width: 50%">
     <form id="formId">
 
         <div>
             <input id="messageIdId"/>
         </div>
+
         <div>
             <input id="parentId"/>
         </div>
         <div>
             <input id="dateId"/>
         </div>
-        <div>
-            <input id="messageId"/>
+
+        <div class="form-floating">
+            <textarea class="form-control" id="messageId" style="height: 100%" placeholder="''"></textarea>
+            <label for="messageLabel">Wpisz wiadomość do rodzica</label>
         </div>
 
-        <button type="submit">Save</button>
-        <hr>
-    </form>
+        <div style="width: 100%">
+            <button type="submit" class="btn btn-primary btn-lg mt-2" style="width: 100%">Wyślij</button>
+        </div>
 
+
+    </form>
 </div>
+
 
 <footer id="footerId">
     <p>Footer content</p>
