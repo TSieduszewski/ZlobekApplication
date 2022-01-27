@@ -1,5 +1,6 @@
 package com.app.zlobek.service;
 
+import com.app.zlobek.dao.MessageRepository;
 import com.app.zlobek.dao.ParentRepository;
 import com.app.zlobek.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
