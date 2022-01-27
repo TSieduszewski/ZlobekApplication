@@ -3,19 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Parents Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
 
-<form id="parentFormId">
-    <input id="parentId"></br>
-    <input id="parentNameId"></br>
-    <input id="parentSurnameId"></br>
-    <input id="childrenNameId"></br>
-    <input id="childrenSurnameId"></br>
-    <input id="addressId"></br>
-    <input id="phoneId"></br>
-    <input id="emailId"></br>
-    <input type="submit">
-</form>
+<div class="container-fluid border border-primary rounded m-2 p-2 bg-light" style="width: 50%">
+    <form id="parentFormId">
+        <input id="parentId"></br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend w-25">
+                <span class="input-group-text" id="basic-addon1">Imię rodzica</span>
+            </div>
+            <input id="parentNameId" type="text" class="form-control" aria-label="Imię rodzica" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend w-25">
+                <span class="input-group-text" id="basic-addon1">Nazwisko</span>
+            </div>
+            <input id="parentSurnameId" type="text" class="form-control" aria-label="Nazwisko rodzica" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend w-25">
+                <span class="input-group-text" id="basic-addon1">Imię dziecka</span>
+            </div>
+            <input id="childrenNameId" type="text" class="form-control" aria-label="Imię dziecka" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend w-25">
+                <span class="input-group-text" id="basic-addon1">Nazwisko dziecka</span>
+            </div>
+            <input id="childrenSurnameId" type="text" class="form-control" aria-label="Nazwisko dziecka" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend w-25">
+                <span class="input-group-text" id="basic-addon1">Adres</span>
+            </div>
+            <input id="addressId" type="text" class="form-control" aria-label="Adres" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend w-25">
+                <span class="input-group-text" id="basic-addon1">Telefon</span>
+            </div>
+            <input id="phoneId" type="text" class="form-control" aria-label="Telefon" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend w-25">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+            </div>
+            <input id="emailId" type="text" class="form-control" aria-label="Email" aria-describedby="basic-addon1">
+        </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col" style="width: 50%">
+                            <button type="submit" class="btn btn-primary btn-lg mt-2" style="width: 100%">Zapisz</button>
+                        </div>
+                        <div class="col"style="width: 50%">
+                            <a class="btn btn-danger btn-lg mt-2" style="width: 100%" role="button" id="backId"/>
+                        </div>
+                    </div>
+                </div>
+    </form>
+
+
+
+
+
+
+<!--    </form>-->
+</div>
+
+
+
 </body>
 </html>

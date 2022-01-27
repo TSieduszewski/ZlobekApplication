@@ -48,15 +48,12 @@
 
     <div class="container-md-auto">
         <div class="row justify-content-center">
-            <div class="col-md-auto" th:if="${messages.totalPages > 0}"
-                 th:each="pageNumber : ${pageNumbers}">
-                <span th:if="${pageNumber==messages.number + 1}">
-                    <a th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}"
-                       th:text=${pageNumber} class="btn btn-info text-decoration-none text-white" role="button"></a>
+            <div class="col-md-auto" id="totalPagesId">
+                <span id="ifStatementId">
+                    <a id="pageId" class="btn btn-info text-decoration-none text-white" role="button"></a>
                 </span>
                 <span th:if="${pageNumber!=messages.number + 1}">
-                    <a th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}"
-                       th:text=${pageNumber} class="btn btn-primary text-decoration-none text-white" role="button"></a>
+                    <a id="pageId" class="btn btn-primary text-decoration-none text-white" role="button"></a>
                 </span>
             </div>
         </div>
