@@ -40,12 +40,11 @@
         </thead>
         <tbody>
         <tr id="showMessagesId">
-            <td id="messageDateId"/>
+            <td class="w-25" id="messageDateId"/>
             <td id="messageId"/>
         </tr>
         </tbody>
     </table>
-
 
     <div class="container-md-auto">
         <div class="row justify-content-center">
@@ -64,19 +63,6 @@
 
     </div>
 
-
-<!--    <div class="container-md-auto">-->
-<!--        <div class="row d-flex justify-content-center">-->
-<!--            <div class="col-md-auto border rounded m-1" th:if="${messages.totalPages > 0}"-->
-<!--                 th:each="pageNumber : ${pageNumbers}">-->
-<!--                <button type="button" class="btn btn-primary">-->
-<!--                    <a th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}"-->
-<!--                       th:text=${pageNumber} th:class="${pageNumber==messages.number + 1} ? active" ></a>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--    </div>-->
 </div>
 
 
