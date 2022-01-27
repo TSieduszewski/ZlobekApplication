@@ -8,7 +8,7 @@
     <attr sel="#singleParentStatusId"
           type="hidden" th:field="${messageReadyToSendAttribute.singleParentStatus}"/>
     <attr sel="#messageId"
-          type="text" th:field="${messageReadyToSendAttribute.message.message}"/>
+          type="text" th:field="${messageReadyToSendAttribute.message.message}"  id="messageLabel"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
     <attr sel="#backId"
