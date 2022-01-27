@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.tymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
@@ -45,9 +45,42 @@
         </tr>
         </tbody>
     </table>
+
+
+    <div class="container-md-auto">
+        <div class="row justify-content-center">
+            <div class="col-md-auto" th:if="${messages.totalPages > 0}"
+                 th:each="pageNumber : ${pageNumbers}">
+                <span th:if="${pageNumber==messages.number + 1}">
+                    <a th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}"
+                       th:text=${pageNumber} class="btn btn-info text-decoration-none text-white" role="button"></a>
+                </span>
+                <span th:if="${pageNumber!=messages.number + 1}">
+                    <a th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}"
+                       th:text=${pageNumber} class="btn btn-primary text-decoration-none text-white" role="button"></a>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+
+<!--    <div class="container-md-auto">-->
+<!--        <div class="row d-flex justify-content-center">-->
+<!--            <div class="col-md-auto border rounded m-1" th:if="${messages.totalPages > 0}"-->
+<!--                 th:each="pageNumber : ${pageNumbers}">-->
+<!--                <button type="button" class="btn btn-primary">-->
+<!--                    <a th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}"-->
+<!--                       th:text=${pageNumber} th:class="${pageNumber==messages.number + 1} ? active" ></a>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
 </div>
 
-<div class="col"style="width: 100%">
+
+<div class="col" style="width: 100%">
     <a class="btn btn-danger btn-lg mt-2" style="width: 100%" role="button" id="backId"/>
 </div>
 </body>
