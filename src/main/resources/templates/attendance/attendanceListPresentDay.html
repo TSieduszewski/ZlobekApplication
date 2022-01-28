@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lista obecności - zestawienie dzisiejszego dnia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
 <div>
-    <table>
-        <thead>
-        <th>Imię rodzica</th>
-        <th>Nazwisko rodzica</th>
-        <th>Imię dziecka</th>
-        <th>Nazwisko dziecka</th>
-        <th>Data</th>
-        <th>Zgłoszenie od rodzica</th>
-        <th>Stan faktyczny</th>
-        <th>Dopłata</th>
+    <i class="bi bi-list-check mx-3" style="font-size: 2rem; color: cornflowerblue;">&emsp;Lista obecności - zestawienie dzisiejszego dnia</i>
+</div>
+
+<div>
+    <table class="table table-sm table-striped table-hover">
+        <thead class="bg-primary bg-gradient text-white shadow ">
+            <th>Imię rodzica</th>
+            <th>Nazwisko rodzica</th>
+            <th>Imię dziecka</th>
+            <th>Nazwisko dziecka</th>
+            <th>Data</th>
+            <th>Zgłoszenie od rodzica</th>
+            <th>Stan faktyczny</th>
+            <th>Dopłata</th>
         </thead>
         <tbody>
         <tr id="showParentsId">
+
             <td id="parentFirstNameId"/>
             <td id="parentLastNameId"/>
             <td id="childrenFirstNameId"/>
@@ -27,19 +35,24 @@
             <td id="presentStatusFromParentId"/>
             <td>
                 <span id="trueChoiceId">Zmień status</span>
-                <span id="falseChoiceId"><a id="presentStatusFromDirectorId">Zmień status</a></span>
-            </td>
 
+                <span th:if="${tempParent.verification==false}">
+                    <span id="falseChoiceId"><a class="btn btn-outline-danger btn-sm shadow form-control" role="button" id="presentStatusFromDirectorId">Zmień status</a></span>
+                </span>
+                <span th:if="${tempParent.verification==true}">
+                    <span id="falseChoiceId"><a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="presentStatusFromDirectorId">Zmień status</a></span>
+                </span>
+
+            </td>
             <td id="extraPaymentId"/>
         </tr>
         </tbody>
     </table>
 
 </div>
-
-    <div>
-        <a th:href="@{/messages/sendPredefinedMessage}">Wyślij powiadomienie o naliczonych opłatach</a>
-    </div>
+<div class="row justify-content-md-center">
+    <a class="btn btn-primary btn-lg" style="width: 50%" role="button" id="sendPaymentInfo"/>
+</div>
 <footer id="footerId">
     <p>Footer content</p>
 </footer>

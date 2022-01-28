@@ -23,6 +23,8 @@
           th:if="${hourGuard == true}" th:text="'Obecność'"/>
     <attr sel="#falseChoiceId"
           th:if="${hourGuard == false}"/>
+    <attr sel="#sendPaymentInfo"
+          th:href="@{/messages/sendPredefinedMessage}" th:text="'Wyślij powiadomienie o naliczonych opłatach'"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>
