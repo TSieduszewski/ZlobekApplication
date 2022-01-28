@@ -3,7 +3,8 @@
           th:each="tempAttendance : ${attendanceList}"/>
 
     <attr sel="#attendanceDateId"
-          th:text="${tempAttendance.attendanceDate}"/>
+          th:text="${#temporals.format(tempAttendance.attendanceDate, 'dd-MM-yyyy')}"/>
+
     <attr sel="#attendanceStatusId"
           th:text="${tempAttendance.attendant} ? 'Obecność' : 'Nieobecność'"/>
     <attr sel="#attendanceButtonStatusId"

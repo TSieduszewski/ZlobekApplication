@@ -11,7 +11,7 @@
     <attr sel="#childrenLastNameId"
           th:text="${tempParent.parent.childrenLastName}"/>
     <attr sel="#presentDataId"
-          th:text="${tempParent.attendanceDate}"/>
+          th:text="${#temporals.format(tempParent.attendanceDate, 'dd-MM-yyyy')}"/>
     <attr sel="#presentStatusFromParentId"
           th:text="${tempParent.attendant} ? 'Obecność' : 'Nieobecność'"/>
     <attr sel="#presentStatusFromDirectorId"

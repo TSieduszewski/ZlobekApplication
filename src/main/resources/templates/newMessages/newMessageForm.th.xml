@@ -12,5 +12,5 @@
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
     <attr sel="#backId"
-          th:href="'/parents/list'" th:text="Powrót"/>
+          th:href="${url}" th:text="Powrót"/>
 </thlogic>

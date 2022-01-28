@@ -17,7 +17,8 @@
     <attr sel="#messageId"
           th:text="${tempMessages.message}"/>
     <attr sel="#messageDateId"
-          th:text="${tempMessages.date}"/>
+          th:text="${#temporals.format(tempMessages.date, 'dd-MM-yyyy HH:mm')}"/>
+
     <attr sel="#totalPagesId"
           th:if="${messages.totalPages > 0}" th:each="pageNumber : ${pageNumbers}"/>
     <attr sel="#ifStatementId"
@@ -25,7 +26,8 @@
     <attr sel="#ifStatementButtonId"
           th:if="${pageNumber!=messages.number + 1}"/>
     <attr sel="#pageId"
-          th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}" th:text=${pageNumber}/>
+          th:href="@{/parents/showSingleParentMessages(parentId=${singleParent.id}, page=${pageNumber}, size=${messages.size})}"
+          th:text=${pageNumber}/>
 
     <attr sel="#backId"
           th:href="list" th:text="Powrót"/>
