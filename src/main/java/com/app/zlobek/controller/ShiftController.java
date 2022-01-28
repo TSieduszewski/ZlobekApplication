@@ -5,6 +5,7 @@ import com.app.zlobek.service.BabysitterService;
 import com.app.zlobek.service.ShiftService;
 import com.app.zlobek.util.shift.ShiftWithBabysitter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,21 +36,23 @@ public class ShiftController {
     }
 
     @GetMapping("/addShift")
-    public String addShift(@RequestParam("babysitterId") int id, Model model) {
+    public String addShift(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("babysitterId") int id, Model model) {
 
         ShiftWithBabysitter shift = new ShiftWithBabysitter(id);
 
         model.addAttribute("shift", shift);
+        model.addAttribute("url", url);
 
         return "babysittersShifts/shiftForm";
     }
 
     @GetMapping("/updateShift")
-    public String updateShift(@RequestParam("shiftId") int id, Model model) {
+    public String updateShift(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("shiftId") int id, Model model) {
 
         Shift tempShift = shiftService.findById(id);
         ShiftWithBabysitter shift = new ShiftWithBabysitter(tempShift, tempShift.getBabysitter().getId());
         model.addAttribute("shift", shift);
+        model.addAttribute("url", url);
 
         return "babysittersShifts/shiftForm";
     }
