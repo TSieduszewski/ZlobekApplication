@@ -13,6 +13,11 @@
           type="text" th:field="${babyStuff.towels}" th:placeholder="${babyStuff.towels}"/>
     <attr sel="#bibsId"
           type="text" th:field="${babyStuff.bibs}" th:placeholder="${babyStuff.bibs}"/>
+    <attr sel="#parentAndChildrenId"
+          th:text="'Aktualizujesz zestawienie rzeczy rodzica '
+          + ${parent.parentFirstName} + ' ' + ${parent.parentLastName}
+          + ' (dziecko: ' + ${parent.childrenFirstName} + ' ' + ${parent.childrenLastName} +'):'"/>
+
 
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>

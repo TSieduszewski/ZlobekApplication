@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>All Stuff</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
 <div>
-    <table>
-        <thead>
-        <th>Imię rodzica</th>
-        <th>Nazwisko rodzica</th>
-        <th>Imię dziecka</th>
-        <th>Nazwisko dziecka</th>
-        <th>Chusteczki suche</th>
-        <th>Chusteczki mokre</th>
-        <th>Pieluchy</th>
-        <th>Ręczniki</th>
-        <th>Śliniaki</th>
-        <th>Zaktualizuj</th>
+    <i class="bi bi-bag-check-fill mx-3" style="font-size: 2rem; color: cornflowerblue;">&emsp;Zestawienie rzeczy rodziców</i>
+</div>
 
+<div>
+    <table class="table table-sm table-striped table-hover">
+        <thead class="bg-primary bg-gradient text-white shadow ">
+            <th>Imię rodzica</th>
+            <th>Nazwisko rodzica</th>
+            <th>Imię dziecka</th>
+            <th>Nazwisko dziecka</th>
+            <th>Chusteczki suche</th>
+            <th>Chusteczki mokre</th>
+            <th>Pieluchy</th>
+            <th>Ręczniki</th>
+            <th>Śliniaki</th>
+            <th>Zaktualizuj</th>
         </thead>
         <tbody>
         <tr id="showStuffId">
@@ -29,38 +35,40 @@
 
             <td>
                 <span id="dryWipesId"></span>
-                <a id="addDryWipesId"></a>
-                <a id="removeDryWipesId"></a></br>
+                <a id="addDryWipesId"><i class="bi bi-plus-circle"></i></a>
+                <a id="removeDryWipesId"><i class="bi bi-dash-circle"></i></a></br>
 
             </td>
             <td>
                 <span id="wetWipesId"></span>
-                <a id="addWetWipesId"></a>
-                <a id="removeWetWipesId"></a>
+                <a id="addWetWipesId"><i class="bi bi-plus-circle"></i></a>
+                <a id="removeWetWipesId"><i class="bi bi-dash-circle"></i></a>
             </td>
             <td>
                 <span id="diapersId"></span>
-                <a id="addDiapersId"></a>
-                <a id="removeDiapersId"></a>
+                <a id="addDiapersId"><i class="bi bi-plus-circle"></i></a>
+                <a id="removeDiapersId"><i class="bi bi-dash-circle"></i></a>
             </td>
             <td>
                 <span id="towelsId"></span>
-                <a id="addTowelsId"></a>
-                <a id="removeTowelsId"></a>
+                <a id="addTowelsId"><i class="bi bi-plus-circle"></i></a>
+                <a id="removeTowelsId"><i class="bi bi-dash-circle"></i></a>
             </td>
             <td>
                 <span id="bibsId"></span>
-                <a id="addBibsId"></a>
-                <a id="removeBibsId"></a>
+                <a id="addBibsId"><i class="bi bi-plus-circle"></i></a>
+                <a id="removeBibsId"><i class="bi bi-dash-circle"></i></a>
             </td>
 
             <td>
-                <a id="updateAllStuff">Zaktualizuj</a>
+                <a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="updateAllStuff">Zaktualizuj</a>
             </td>
         </tr>
         </tbody>
     </table>
+
 </div>
+
 <footer id="footerId">
     <p>Footer content</p>
 </footer>
