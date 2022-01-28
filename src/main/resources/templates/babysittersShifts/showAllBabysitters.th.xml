@@ -3,7 +3,7 @@
           th:each="tempBabysitters : ${babysitters}"/>
 
     <attr sel="#babysitterNameId"
-          th:href="@{/babysitter/showSingleBabysitter(babysitterId=${tempBabysitters.id})}" th:text="${tempBabysitters.name}"/>
+          th:text="${tempBabysitters.name}"/>
     <attr sel="#addBabysitterId"
           th:href="@{/babysitter/addBabysitter}" th:text="'Dodaj opiekunkę'"/>
     <attr sel="#editBabysitterId"

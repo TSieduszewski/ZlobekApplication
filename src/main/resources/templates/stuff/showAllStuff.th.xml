@@ -22,29 +22,29 @@
           th:text="${tempStuff.bibs}"/>
 
     <attr sel="#addBibsId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='bibs')}" th:text="'+'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='bibs')}"/>
     <attr sel="#removeBibsId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='bibs')}" th:text="'-'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='bibs')}"/>
 
     <attr sel="#addTowelsId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='towels')}" th:text="'+'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='towels')}"/>
     <attr sel="#removeTowelsId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='towels')}" th:text="'-'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='towels')}"/>
 
     <attr sel="#addDiapersId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='diapers')}" th:text="'+'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='diapers')}"/>
     <attr sel="#removeDiapersId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='diapers')}" th:text="'-'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='diapers')}"/>
 
     <attr sel="#addWetWipesId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='wetWipes')}" th:text="'+'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='wetWipes')}"/>
     <attr sel="#removeWetWipesId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='wetWipes')}" th:text="'-'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='wetWipes')}"/>
 
     <attr sel="#addDryWipesId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='dryWipes')}" th:text="'+'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=1, stuff='dryWipes')}"/>
     <attr sel="#removeDryWipesId"
-          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='dryWipes')}" th:text="'-'"/>
+          th:href="@{/babystuff/update(parentId=${tempStuff.parent.id}, change=-1, stuff='dryWipes')}"/>
 
     <attr sel="#updateAllStuff"
           th:href="@{/babystuff/showFormForUpdateStuff(parentId=${tempStuff.parent.id})}" th:text="'Zaktualizuj'"/>

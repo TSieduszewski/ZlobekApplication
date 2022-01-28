@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.tymeleaf.org">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
@@ -52,7 +52,7 @@
                 <span id="ifStatementId">
                     <a id="pageId" class="btn btn-info text-decoration-none text-white" role="button"></a>
                 </span>
-                <span th:if="${pageNumber!=messages.number + 1}">
+                <span id="ifStatementButtonId">
                     <a id="pageId" class="btn btn-primary text-decoration-none text-white" role="button"></a>
                 </span>
             </div>

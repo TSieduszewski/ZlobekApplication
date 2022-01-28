@@ -9,6 +9,7 @@ import com.app.zlobek.service.ParentService;
 import com.app.zlobek.util.global.GlobalValues;
 import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +36,11 @@ public class MessageController {
     }
 
     @GetMapping("/showFormForAddMessage")
-    public String showFormForAddMessage(@RequestParam("parentId") int theId, Model model) {
+    public String showFormForAddMessage(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("parentId") int theId, Model model) {
 
         MessageWithReceivers messageReadyToSend = new MessageWithReceivers(theId);
         model.addAttribute("messageReadyToSendAttribute", messageReadyToSend);
+        model.addAttribute("url", url);
 
         return "newMessages/newMessageForm";
     }

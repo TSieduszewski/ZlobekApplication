@@ -3,7 +3,7 @@
           th:each="tempMessage : ${listOfMessagesFromParents}"/>
 
     <attr sel="#presentDataId"
-          th:text="${tempMessage.date}"/>
+          th:text="${#temporals.format(tempMessage.date, 'dd-MM-yyyy HH:mm')}"/>
     <attr sel="#messageId"
           th:text="${tempMessage.message}"/>
     <attr sel="#footerId"

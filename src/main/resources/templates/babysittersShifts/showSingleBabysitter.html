@@ -3,46 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Grafik opiekunki</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
-
 <div>
-    <h2>Imię i nazwisko opiekunki: <span id="babysitterNameId">babysitterNameId</span></h2>
+    <i class="bi bi-person-circle mx-3" style="font-size: 2rem; color: cornflowerblue;">&emsp;<span id="babysitterNameId">babysitterNameId</span></i>
+</div>
+<div>
+    <table class="table table-sm table-striped table-hover">
+        <thead class="bg-primary bg-gradient text-white shadow ">
+        <th>Data (dzień)</th>
+        <th>Godzina rozpoczęcia zmiany</th>
+        <th>Godzina zakończenia zmiany</th>
+        <th>Edycja</th>
+        <th>Usuń</th>
+        </thead>
+        <tbody>
+        <tr id="showBabysittersShiftsId">
+
+            <td id="dateId"/>
+            <td id="startShiftId"/>
+            <td id="endShiftId"/>
+            <td>
+                <a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="editShiftId"/>
+            </td>
+            <td>
+                <a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="deleteShiftId"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="col-sm">
+    <div>
+        <a class="btn btn-primary btn-lg" style="width: 100%" role="button" id="addShiftId"/>
+    </div>
 </div>
 
-    <div>
-        <table>
-            <thead>
-            <th>Data (dzień)</th>
-            <th>Godzina rozpoczęcia zmiany</th>
-            <th>Godzina zakończenia zmiany</th>
-            <th>Edycja</th>
-            <th>Usuń</th>
-            </thead>
-            <tbody>
-            <tr id="showBabysittersShiftsId">
-                <td id="dateId"/>
-                <td id="startShiftId"/>
-                <td id="endShiftId"/>
-                <td>
-                    <a id="editShiftId"/>
-                <td/>
-                <td>
-                    <a id="deleteShiftId"/>
-                <td/>
-
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
-<p></p>
-<div><a id="addShiftId">addShiftId</a></div>
-<p></p>
-
-
 <div>
-    <input id="backId" />
+    <a class="btn btn-danger btn-lg mt-2" style="width: 100%" role="button" id="backId"/>
 </div>
 </body>
 </html>

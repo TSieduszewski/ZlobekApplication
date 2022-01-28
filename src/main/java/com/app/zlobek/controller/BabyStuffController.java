@@ -1,9 +1,10 @@
 package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.BabyStuff;
+import com.app.zlobek.entity.Parent;
 import com.app.zlobek.service.BabyStuffService;
+import com.app.zlobek.service.ParentService;
 import com.app.zlobek.util.global.GlobalValues;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ import java.util.List;
 public class BabyStuffController {
 
     private BabyStuffService babyStuffService;
+    private ParentService parentService;
 
     @Autowired
-    public BabyStuffController(BabyStuffService babyStuffService) {
+    public BabyStuffController(BabyStuffService babyStuffService, ParentService parentService) {
         this.babyStuffService = babyStuffService;
+        this.parentService = parentService;
     }
 
     public String showBabyStuff() {
@@ -72,9 +75,10 @@ public class BabyStuffController {
 
     @GetMapping("/showFormForUpdateStuff")
     public String showFormForUpdateStuff(@RequestParam("parentId") int id, Model model) {
-
+        Parent parent = parentService.findById(id);
         BabyStuff babyStuff = babyStuffService.findById(id);
         model.addAttribute("babyStuff", babyStuff);
+        model.addAttribute("parent", parent);
 
         return "stuff/updateStuffPage";
     }
@@ -88,7 +92,7 @@ public class BabyStuffController {
     }
 
     @GetMapping("/showParentStuff")
-    private String showSingleParentStuff(Model model){
+    private String showSingleParentStuff(Model model) {
 
         BabyStuff parentStuff = babyStuffService.findById(GlobalValues.idParent);
         model.addAttribute("parentStuff", parentStuff);

@@ -2,7 +2,7 @@
 
 
     <attr sel="#babysitterNameId"
-          th:text="${babysitter.name}"/>
+          th:text="'Przeglądasz szczegóły opiekunki: ' + ${babysitter.name}"/>
 
     <attr sel="#showBabysittersShiftsId"
           th:each="tempBabysitter : ${babysitter.shifts}"/>
@@ -20,6 +20,6 @@
           th:href="@{/shift/deleteShift(shiftId=${tempBabysitter.id})}" th:text="'Usuń'"/>
 
     <attr sel="#backId"
-          th:action="action" type="button" value="Powrót" onclick="history.go(-1);"/>
+          th:href="@{/shift/showAllShifts}" th:text="'Powrót'"/>
 
 </thlogic>

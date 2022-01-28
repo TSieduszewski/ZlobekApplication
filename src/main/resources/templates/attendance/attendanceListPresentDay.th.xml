@@ -11,7 +11,7 @@
     <attr sel="#childrenLastNameId"
           th:text="${tempParent.parent.childrenLastName}"/>
     <attr sel="#presentDataId"
-          th:text="${tempParent.attendanceDate}"/>
+          th:text="${#temporals.format(tempParent.attendanceDate, 'dd-MM-yyyy')}"/>
     <attr sel="#presentStatusFromParentId"
           th:text="${tempParent.attendant} ? 'Obecność' : 'Nieobecność'"/>
     <attr sel="#presentStatusFromDirectorId"
@@ -23,6 +23,8 @@
           th:if="${hourGuard == true}" th:text="'Obecność'"/>
     <attr sel="#falseChoiceId"
           th:if="${hourGuard == false}"/>
+    <attr sel="#sendPaymentInfo"
+          th:href="@{/messages/sendPredefinedMessage}" th:text="'Wyślij powiadomienie o naliczonych opłatach'"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>

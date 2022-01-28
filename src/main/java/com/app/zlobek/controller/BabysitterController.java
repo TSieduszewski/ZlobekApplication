@@ -5,6 +5,7 @@ import com.app.zlobek.service.BabysitterService;
 import com.app.zlobek.service.ShiftService;
 import com.app.zlobek.util.shift.ShiftWithBabysitter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,31 +37,34 @@ public class BabysitterController {
     }
 
     @GetMapping("/showSingleBabysitter")
-    public String showSingleBabysitter(@RequestParam("babysitterId") int id, Model model) {
+    public String showSingleBabysitter(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("babysitterId") int id, Model model) {
         Babysitter babysitter = babysitterService.findById(id);
 
         Collections.sort(babysitter.getShifts());
         model.addAttribute("babysitter", babysitter);
+        model.addAttribute("url", url);
 
         return "babysittersShifts/showSingleBabysitter";
     }
 
     @GetMapping("/addBabysitter")
-    public String addBabysitter(Model model) {
+    public String addBabysitter(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, Model model) {
 
         Babysitter babysitter = new Babysitter();
 
         model.addAttribute("babysitter", babysitter);
+        model.addAttribute("url", url);
 
         return "babysittersShifts/addBabysitter";
     }
 
     @GetMapping("/updateBabysitter")
-    public String updateBabysitter(@RequestParam("babysitterId") int id, Model model) {
+    public String updateBabysitter(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("babysitterId") int id, Model model) {
 
         Babysitter babysitter = babysitterService.findById(id);
 
         model.addAttribute("babysitter", babysitter);
+        model.addAttribute("url", url);
 
         return "babysittersShifts/addBabysitter";
     }
