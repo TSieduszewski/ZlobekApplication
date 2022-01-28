@@ -20,7 +20,7 @@
     <attr sel="#showAttendanceId"
           th:each="tempAttendance : ${attendance}"/>
     <attr sel="#attendanceDateId"
-          th:text="${tempAttendance.attendanceDate}"/>
+          th:text="${#temporals.format(tempAttendance.attendanceDate, 'dd-MM-yyyy')}"/>
     <attr sel="#attendanceStatusId"
           th:text="${tempAttendance.verification == tempAttendance.attendant} ? '0 zł' : '10 zł'"/>
     <attr sel="#footerId"
