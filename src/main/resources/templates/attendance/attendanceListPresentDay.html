@@ -9,20 +9,21 @@
 </head>
 <body>
 <div>
-    <i class="bi bi-list-check mx-3" style="font-size: 2rem; color: cornflowerblue;">&emsp;Lista obecności - zestawienie dzisiejszego dnia</i>
+    <i class="bi bi-list-check mx-3" style="font-size: 2rem; color: cornflowerblue;">&emsp;Lista obecności - zestawienie
+        dzisiejszego dnia</i>
 </div>
 
 <div>
     <table class="table table-sm table-striped table-hover">
         <thead class="bg-primary bg-gradient text-white shadow ">
-            <th>Imię rodzica</th>
-            <th>Nazwisko rodzica</th>
-            <th>Imię dziecka</th>
-            <th>Nazwisko dziecka</th>
-            <th>Data</th>
-            <th>Zgłoszenie od rodzica</th>
-            <th>Stan faktyczny</th>
-            <th>Dopłata</th>
+        <th>Imię rodzica</th>
+        <th>Nazwisko rodzica</th>
+        <th>Imię dziecka</th>
+        <th>Nazwisko dziecka</th>
+        <th>Data</th>
+        <th>Zgłoszenie od rodzica</th>
+        <th>Stan faktyczny</th>
+        <th>Dopłata</th>
         </thead>
         <tbody>
         <tr id="showParentsId">
@@ -37,10 +38,12 @@
                 <span id="trueChoiceId">Zmień status</span>
 
                 <span th:if="${tempParent.verification==false}">
-                    <span id="falseChoiceId"><a class="btn btn-outline-danger btn-sm shadow form-control" role="button" id="presentStatusFromDirectorId">Zmień status</a></span>
+                    <span id="falseChoiceId"><a class="btn btn-outline-danger btn-sm shadow form-control" role="button"
+                                                id="presentStatusFromDirectorId">Zmień status</a></span>
                 </span>
                 <span th:if="${tempParent.verification==true}">
-                    <span id="falseChoiceId"><a class="btn btn-outline-primary btn-sm shadow form-control" role="button" id="presentStatusFromDirectorId">Zmień status</a></span>
+                    <span id="falseChoiceId"><a class="btn btn-outline-primary btn-sm shadow form-control" role="button"
+                                                id="presentStatusFromDirectorId">Zmień status</a></span>
                 </span>
 
             </td>
@@ -50,8 +53,11 @@
     </table>
 
 </div>
-<div class="row justify-content-md-center">
-    <a class="btn btn-primary btn-lg" style="width: 50%" role="button" id="sendPaymentInfo"/>
+<div th:if="${isAnyPayment == true}" class="row justify-content-md-center">
+    <a id="sendPaymentInfo"/>
+</div>
+<div th:if="${isAnyPayment == false}" class="row justify-content-md-center">
+    <a id="sendPaymentInfoButton"/>
 </div>
 <footer id="footerId">
     <p>Footer content</p>

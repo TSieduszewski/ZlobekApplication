@@ -3,22 +3,50 @@
           action="#" th:action="@{/babystuff/save}" method="POST"/>
     <attr sel="#parentIdId"
           type="hidden" th:field="${babyStuff.id}"/>
+    <attr sel="#parentFirstNameId"
+          type="hidden" th:field="${babyStuff.parent.parentFirstName}"/>
+    <attr sel="#parentLastNameId"
+          type="hidden" th:field="${babyStuff.parent.parentLastName}"/>
+    <attr sel="#childrenFirstNameId"
+          type="hidden" th:field="${babyStuff.parent.childrenFirstName}"/>
+    <attr sel="#childrenLastNameId"
+          type="hidden" th:field="${babyStuff.parent.childrenLastName}"/>
+    <attr sel="#addressId"
+          type="hidden" th:field="${babyStuff.parent.address}"/>
+    <attr sel="#phoneId"
+          type="hidden" th:field="${babyStuff.parent.phoneNumber}"/>
+    <attr sel="#emailId"
+          type="hidden" th:field="${babyStuff.parent.email}"/>
     <attr sel="#dryWipesId"
           type="text" th:field="${babyStuff.dryWipes}" th:placeholder="${babyStuff.dryWipes}"/>
+    <attr sel="#alertDryWipesId"
+          th:if="${#fields.hasErrors('babyStuff.dryWipes')}" th:errors="${babyStuff.dryWipes}"/>
+
     <attr sel="#wetWipesId"
           type="text" th:field="${babyStuff.wetWipes}" th:placeholder="${babyStuff.wetWipes}"/>
+    <attr sel="#alertWetWipesId"
+          th:if="${#fields.hasErrors('babyStuff.wetWipes')}" th:errors="${babyStuff.wetWipes}"/>
+
     <attr sel="#diapersId"
           type="text" th:field="${babyStuff.diapers}" th:placeholder="${babyStuff.diapers}"/>
+    <attr sel="#alertDiapersId"
+          th:if="${#fields.hasErrors('babyStuff.diapers')}" th:errors="${babyStuff.diapers}"/>
+
     <attr sel="#towelsId"
           type="text" th:field="${babyStuff.towels}" th:placeholder="${babyStuff.towels}"/>
+    <attr sel="#alertTowelsId"
+          th:if="${#fields.hasErrors('babyStuff.towels')}" th:errors="${babyStuff.towels}"/>
+
     <attr sel="#bibsId"
           type="text" th:field="${babyStuff.bibs}" th:placeholder="${babyStuff.bibs}"/>
+    <attr sel="#alertBibsId"
+          th:if="${#fields.hasErrors('babyStuff.bibs')}" th:errors="${babyStuff.bibs}"/>
+
+
     <attr sel="#parentAndChildrenId"
           th:text="'Aktualizujesz zestawienie rzeczy rodzica '
-          + ${parent.parentFirstName} + ' ' + ${parent.parentLastName}
-          + ' (dziecko: ' + ${parent.childrenFirstName} + ' ' + ${parent.childrenLastName} +'):'"/>
-
-
+          + ${babyStuff.parent.parentFirstName} + ' ' + ${babyStuff.parent.parentLastName}
+          + ' (dziecko: ' + ${babyStuff.parent.childrenFirstName} + ' ' + ${babyStuff.parent.childrenLastName} +'):'"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
     <attr sel="#backId"

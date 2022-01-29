@@ -2,16 +2,15 @@ package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Parent;
-import com.app.zlobek.entity.Payment;
 import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.ParentService;
 import com.app.zlobek.service.PaymentService;
-import com.app.zlobek.util.global.GlobalValues;
-import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -25,6 +24,7 @@ public class AttendanceController {
     private ParentService parentService;
     private PaymentService paymentService;
     private boolean hourGuard;
+    private boolean isAnyPayment;
 
     @Autowired
     public AttendanceController(AttendanceService attendanceService, ParentService parentService, PaymentService paymentService) {
@@ -43,11 +43,11 @@ public class AttendanceController {
     }
 
     @GetMapping("/change")
-    public String changeAttendanceStatus(@RequestParam("attendanceId") int theId, Model model){
+    public String changeAttendanceStatus(@RequestParam("attendanceId") int theId, Model model) {
 
         Attendance attendance = attendanceService.findById(theId);
 
-        if(attendance.getAttendant()){
+        if (attendance.getAttendant()) {
             attendance.setAttendant(false);
         } else {
             attendance.setAttendant(true);
@@ -59,11 +59,11 @@ public class AttendanceController {
     }
 
     @GetMapping("/verify")
-    public String changeVerificationStatus(@RequestParam("verificationId") int theId, Model model){
+    public String changeVerificationStatus(@RequestParam("verificationId") int theId, Model model) {
 
         Attendance attendance = attendanceService.findById(theId);
 
-        if(attendance.getVerification()){
+        if (attendance.getVerification()) {
             attendance.setVerification(false);
         } else {
             attendance.setVerification(true);
@@ -76,14 +76,14 @@ public class AttendanceController {
 
 
     @GetMapping("/showAttendanceOfAllParents")
-    public String showAttendanceOfAllParents(Model model){
+    public String showAttendanceOfAllParents(Model model) {
         List<Parent> parentList = parentService.findAll();
         model.addAttribute("parents", parentList);
-       return "attendance/attendanceList";
+        return "attendance/attendanceList";
     }
 
     @GetMapping("/showListOfSingleParentsAttendance")
-    public String showListOfSingleParentsAttendance(@RequestParam("parentId") int id, Model model){
+    public String showListOfSingleParentsAttendance(@RequestParam("parentId") int id, Model model) {
 
         Parent singleParent = parentService.findById(id);
         List<Attendance> parentAttendanceList = attendanceService.findAllById(id);
@@ -95,11 +95,23 @@ public class AttendanceController {
     }
 
     @GetMapping("/showPresentDayListOfAttendanceOfAllParents")
-    public String showPresentDayListOfAttendanceOfAllParents(Model model){
+    public String showPresentDayListOfAttendanceOfAllParents(Model model) {
         hourGuard = LocalTime.now().isBefore(LocalTime.of(7, 0, 0));
         List<Attendance> parentList = attendanceService.findAllByDate();
+
+
+        for (Attendance temp : parentList) {
+            if (!(temp.getVerification() && temp.getAttendant())) {
+                isAnyPayment = true;
+                break;
+            }
+            isAnyPayment = false;
+        }
+
         model.addAttribute("parents", parentList);
         model.addAttribute("hourGuard", hourGuard);
+        model.addAttribute("isAnyPayment", isAnyPayment);
+
         return "attendance/attendanceListPresentDay";
     }
 }

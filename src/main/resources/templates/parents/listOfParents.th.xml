@@ -32,10 +32,6 @@
           action="#" th:action="@{/messages/save}" th:object="${listOfParents}" method="POST"/>
     <attr sel="#tempParentIdId"
           type="hidden" name="selectedParents" th:value="${tempParent.id}"/>
-<!--    <attr sel="#listOfParentsMessageIdId"-->
-<!--          type="hidden" th:field="${listOfParents.message.id}"/>-->
-<!--    <attr sel="#listOfParentsMessageMessageId"-->
-<!--          type="text" th:field="${listOfParents.message.message}" th:placeholder="'Wpisz wiadomość'"/>-->
     <attr sel="#mainFormId"
           th:action="@{/messages/save}" method="POST"/>
     <attr sel="#addParent"
