@@ -4,20 +4,42 @@
 
     <attr sel="#parentId"
           type="hidden" th:field="*{id}"/>
+
     <attr sel="#parentNameId"
-          type="text" th:field="*{parentFirstName}" th:placeholder="'Wpisz imię rodzica'"/>
+          type="text" th:field="*{parentFirstName}" th:placeholder="'Wpisz imię rodzica'" id="parentFirstName"/>
+    <attr sel="#alertParentNameId"
+          th:if="${#fields.hasErrors('parentFirstName')}" th:errors="*{parentFirstName}"/>
+
     <attr sel="#parentSurnameId"
           type="text" th:field="*{parentLastName}" th:placeholder="'Wpisz nazwisko rodzica'"/>
+    <attr sel="#alertParentSurnameId"
+          th:if="${#fields.hasErrors('parentLastName')}" th:errors="*{parentLastName}"/>
+
     <attr sel="#childrenNameId"
           type="text" th:field="*{childrenFirstName}" th:placeholder="'Wpisz imię dziecka'"/>
+    <attr sel="#alertChildrenNameId"
+          th:if="${#fields.hasErrors('childrenFirstName')}" th:errors="*{childrenFirstName}"/>
+
     <attr sel="#childrenSurnameId"
           type="text" th:field="*{childrenLastName}" th:placeholder="'Wpisz nazwisko dziecka'"/>
+    <attr sel="#alertChildrenSurnameId"
+          th:if="${#fields.hasErrors('childrenLastName')}" th:errors="*{childrenLastName}"/>
+
     <attr sel="#addressId"
           type="text" th:field="*{address}" th:placeholder="'Wpisz adres zamieszkania'"/>
+    <attr sel="#alertAddressId"
+          th:if="${#fields.hasErrors('address')}" th:errors="*{address}"/>
+
     <attr sel="#phoneId"
           type="text" th:field="*{phoneNumber}" th:placeholder="'Wpisz telefon'"/>
+    <attr sel="#alertPhoneId"
+          th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"/>
+
     <attr sel="#emailId"
           type="text" th:field="*{email}" th:placeholder="'Wpisz email'"/>
+    <attr sel="#alertEmailId"
+          th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+
     <attr sel="#backId"
           th:href="'/parents/list'" th:text="Powrót"/>
     <attr sel="#footerId"

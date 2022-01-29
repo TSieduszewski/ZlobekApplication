@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -90,9 +91,13 @@ public class ParentController {
     }
 
     @PostMapping("/saveParent")
-    public String saveParent(@Valid @ModelAttribute("parent") Parent parent){
+    public String saveParent(@Valid @ModelAttribute("parent") Parent parent, BindingResult bindingResult){
 
-        parentService.save(parent);
+        if (bindingResult.hasErrors()) {
+            return "parents/parentsForm";
+        } else {
+            parentService.save(parent);
+        }
 
         return "redirect:/parents/list";
     }

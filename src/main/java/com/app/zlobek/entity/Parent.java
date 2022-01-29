@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -20,24 +21,48 @@ public class Parent {
     private int id;
 
     @Column(name = "parentfirstname")
+    @NotEmpty(message = "Pole jest wymagane")
+    @NotNull(message = "Pole jest wymagane")
+    @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
     private String parentFirstName;
 
     @Column(name = "parentlastname")
+    @NotEmpty(message = "Pole jest wymagane")
+    @NotNull(message = "Pole jest wymagane")
+    @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
     private String parentLastName;
 
     @Column(name = "childrenfirstname")
+    @NotEmpty(message = "Pole jest wymagane")
+    @NotNull(message = "Pole jest wymagane")
+    @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
     private String childrenFirstName;
 
     @Column(name = "childrenlastname")
+    @NotEmpty(message = "Pole jest wymagane")
+    @NotNull(message = "Pole jest wymagane")
+    @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
     private String childrenLastName;
 
     @Column(name = "address")
+    @NotEmpty(message = "Pole jest wymagane")
+    @NotNull(message = "Pole jest wymagane")
+    @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
     private String address;
 
     @Column(name = "phonenumber")
+    @NotEmpty(message = "Pole jest wymagane")
+    @NotNull(message = "Pole jest wymagane")
+    @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
+    @Digits(message = "Telefon musi być liczbą", integer = 9, fraction = 9)
+    @Size(min = 6, max = 9, message = "Niepoprawny format numeru telefonu. W przypadku telefonów komórkowych należy użyć formatu: 000000000, w przypadku telefonu stacjonarnego należy użyć formatu: 000000000. Nie stosujemy spacji, myślników, kropek itd.")
     private String phoneNumber;
 
     @Column(name = "email")
+    @NotEmpty(message = "Pole jest wymagane")
+    @NotNull(message = "Pole jest wymagane")
+    @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
+    @Email(message = "Niepoprawny format email")
     private String email;
 
     @OneToOne(mappedBy = "parent", cascade = CascadeType.ALL)
