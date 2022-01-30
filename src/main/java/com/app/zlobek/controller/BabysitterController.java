@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -80,9 +82,15 @@ public class BabysitterController {
 
 
     @PostMapping("/saveBabysitter")
-    public String saveBabysitter(@Valid @ModelAttribute("babysitter") Babysitter babysitter) {
+    public String saveBabysitter(@Valid @ModelAttribute("babysitter") Babysitter babysitter, BindingResult bindingResult) {
 
-        babysitterService.save(babysitter);
+        if (bindingResult.hasErrors()) {
+
+            return "babysittersShifts/addBabysitter";
+        } else {
+            babysitterService.save(babysitter);
+        }
+
         return "redirect:/babysitter/showAllBabysitters";
     }
 

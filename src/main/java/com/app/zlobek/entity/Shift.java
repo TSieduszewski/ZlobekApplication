@@ -1,5 +1,6 @@
 package com.app.zlobek.entity;
 
+import com.app.zlobek.util.validation.DateRange;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "shifts")
+
 public class Shift implements Comparable<Shift> {
 
     @Id

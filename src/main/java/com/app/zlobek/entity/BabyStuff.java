@@ -1,7 +1,6 @@
 package com.app.zlobek.entity;
 
 import lombok.Data;
-import net.bytebuddy.implementation.bind.annotation.Empty;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -16,9 +15,7 @@ public class BabyStuff {
     private int id;
 
     @Column(name = "drywipes")
-//    @PositiveOrZero(message = "Pole musi być liczbą dodatnią lub zerem")
-    @Min(value=0, message="must be greater than or equal to zero")
-    @Max(value=10, message="must be less than or equal to 10")
+    @PositiveOrZero(message = "Pole musi być liczbą dodatnią lub zerem")
     @NotNull(message = "Pole nie może być puste")
     private Integer dryWipes;
 

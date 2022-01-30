@@ -6,6 +6,8 @@
           type="hidden" th:field="*{id}"/>
     <attr sel="#babysitterNameId"
           type="text" th:field="*{name}"/>
+    <attr sel="#alertBabysitterNameId"
+          th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
     <attr sel="#backId"
           th:href="${url}" th:text="Powrót"/>
     <attr sel="#footerId"

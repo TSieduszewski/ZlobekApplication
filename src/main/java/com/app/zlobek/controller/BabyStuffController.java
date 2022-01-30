@@ -85,7 +85,6 @@ public class BabyStuffController {
 
     @PostMapping("/save")
     public String saveStuff(@Valid @ModelAttribute("babyStuff") BabyStuff babyStuff, BindingResult bindingResult) {
-
         if (bindingResult.hasErrors()) {
 
             return "stuff/updateStuffPage";
