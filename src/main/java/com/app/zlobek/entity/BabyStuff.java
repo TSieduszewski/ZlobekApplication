@@ -3,6 +3,7 @@ package com.app.zlobek.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
@@ -14,21 +15,31 @@ public class BabyStuff {
     private int id;
 
     @Column(name = "drywipes")
-    private int dryWipes;
+    @PositiveOrZero(message = "Pole musi być liczbą dodatnią lub zerem")
+    @NotNull(message = "Pole nie może być puste")
+    private Integer dryWipes;
 
     @Column(name = "wetwipes")
-    private int wetWipes;
+    @PositiveOrZero(message = "Pole musi być liczbą lub zerem")
+    @NotNull(message = "Pole nie może być puste")
+    private Integer wetWipes;
 
     @Column(name = "diapers")
-    private int diapers;
+    @PositiveOrZero(message = "Pole musi być liczbą lub zerem")
+    @NotNull(message = "Pole nie może być puste")
+    private Integer diapers;
 
     @Column(name = "towels")
-    private int towels;
+    @PositiveOrZero(message = "Pole musi być liczbą lub zerem")
+    @NotNull(message = "Pole nie może być puste")
+    private Integer towels;
 
     @Column(name = "bibs")
-    private int bibs;
+    @PositiveOrZero(message = "Pole musi być liczbą lub zerem")
+    @NotNull(message = "Pole nie może być puste")
+    private Integer bibs;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "parent_id")
     private Parent parent;

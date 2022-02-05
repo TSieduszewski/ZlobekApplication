@@ -1,13 +1,13 @@
 package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.BabyStuff;
-import com.app.zlobek.entity.Parent;
 import com.app.zlobek.service.BabyStuffService;
 import com.app.zlobek.service.ParentService;
 import com.app.zlobek.util.global.GlobalValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -75,17 +75,22 @@ public class BabyStuffController {
 
     @GetMapping("/showFormForUpdateStuff")
     public String showFormForUpdateStuff(@RequestParam("parentId") int id, Model model) {
-        Parent parent = parentService.findById(id);
+
         BabyStuff babyStuff = babyStuffService.findById(id);
+
         model.addAttribute("babyStuff", babyStuff);
-        model.addAttribute("parent", parent);
 
         return "stuff/updateStuffPage";
     }
 
     @PostMapping("/save")
-    public String saveStuff(@Valid @ModelAttribute("babyStuff") BabyStuff babyStuff) {
-        babyStuffService.save(babyStuff);
+    public String saveStuff(@Valid @ModelAttribute("babyStuff") BabyStuff babyStuff, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+
+            return "stuff/updateStuffPage";
+        } else {
+            babyStuffService.save(babyStuff);
+        }
 
         return "redirect:/babystuff/showAllStuff";
 

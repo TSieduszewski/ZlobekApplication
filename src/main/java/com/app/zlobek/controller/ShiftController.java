@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -66,14 +67,20 @@ public class ShiftController {
     }
 
     @PostMapping("/saveShift")
-    public String saveShift(@Valid @ModelAttribute("shift") ShiftWithBabysitter shift) {
+    public String saveShift(@Valid @ModelAttribute("shift") ShiftWithBabysitter shift, BindingResult bindingResult) {
+        System.out.println("bindingResult = " + bindingResult);
+        if (bindingResult.hasErrors()) {
 
-        if(shift.getIdOfBabysitter() != 0){
-            shift.getShift().setBabysitter(babysitterService.findById(shift.getIdOfBabysitter()));
-            shiftService.save(shift.getShift());
+            return "babysittersShifts/shiftForm";
         } else {
-            shiftService.save(shift.getShift());
+            if(shift.getIdOfBabysitter() != 0){
+                shift.getShift().setBabysitter(babysitterService.findById(shift.getIdOfBabysitter()));
+                shiftService.save(shift.getShift());
+            } else {
+                shiftService.save(shift.getShift());
+            }
         }
+
         return "redirect:/babysitter/showSingleBabysitter?babysitterId=" + shift.getIdOfBabysitter();
     }
 

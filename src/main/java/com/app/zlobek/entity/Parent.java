@@ -24,24 +24,28 @@ public class Parent {
     @NotEmpty(message = "Pole jest wymagane")
     @NotNull(message = "Pole jest wymagane")
     @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
+    @Pattern(regexp = "[a-żA-Ż-]+", message = "Pole nie może zawierać cyfr")
     private String parentFirstName;
 
     @Column(name = "parentlastname")
     @NotEmpty(message = "Pole jest wymagane")
     @NotNull(message = "Pole jest wymagane")
     @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
+    @Pattern(regexp = "[a-żA-Ż-]+", message = "Pole nie może zawierać cyfr")
     private String parentLastName;
 
     @Column(name = "childrenfirstname")
     @NotEmpty(message = "Pole jest wymagane")
     @NotNull(message = "Pole jest wymagane")
     @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
+    @Pattern(regexp = "[a-żA-Ż-]+", message = "Pole nie może zawierać cyfr")
     private String childrenFirstName;
 
     @Column(name = "childrenlastname")
     @NotEmpty(message = "Pole jest wymagane")
     @NotNull(message = "Pole jest wymagane")
     @Size(min=2, message = "Pole musi zawierać więcej niż dwa znaki")
+    @Pattern(regexp = "[a-żA-Ż-]+", message = "Pole nie może zawierać cyfr")
     private String childrenLastName;
 
     @Column(name = "address")

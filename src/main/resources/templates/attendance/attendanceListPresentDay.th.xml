@@ -24,7 +24,9 @@
     <attr sel="#falseChoiceId"
           th:if="${hourGuard == false}"/>
     <attr sel="#sendPaymentInfo"
-          th:href="@{/messages/sendPredefinedMessage}" th:text="'Wyślij powiadomienie o naliczonych opłatach'"/>
+          th:href="@{/messages/sendPredefinedMessage}" th:text="'Wyślij powiadomienie o naliczonych opłatach'" class="btn btn-primary btn-lg" style="width: 50%" role="button" onclick="alert('Wiadomości rozesłane')"/>
+    <attr sel="#sendPaymentInfoButton"
+          th:href="@{/messages/sendPredefinedMessage}" th:text="'Wyślij powiadomienie o naliczonych opłatach'" class="btn btn-primary btn-lg disabled" style="width: 50%" role="button" onclick="alert('Wiadomości rozesłane')"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
 </thlogic>

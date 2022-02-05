@@ -8,6 +8,8 @@
           type="hidden" th:field="*{shift.id}"/>
     <attr sel="#startShiftId"
           type="datetime-local" th:field="*{shift.startShift}"/>
+    <attr sel="#alertStartShiftId"
+          th:if="${#fields.hasErrors()}" th:text="'Data początkowa musi być wcześniej, niż data końcowa, oraz zmiana nie może być dłuższa niż 10 godzin'"/>
     <attr sel="#endShiftId"
           type="datetime-local" th:field="*{shift.endShift}"/>
     <attr sel="#backId"

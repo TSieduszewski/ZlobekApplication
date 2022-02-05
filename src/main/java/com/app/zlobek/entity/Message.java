@@ -1,7 +1,11 @@
 package com.app.zlobek.entity;
 
 import lombok.Data;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,7 +34,7 @@ public class Message {
     }
 
     public Message(int id, String message, LocalDateTime date) {
-        this.id=id;
+        this.id = id;
         this.message = message;
         this.date = date;
     }
