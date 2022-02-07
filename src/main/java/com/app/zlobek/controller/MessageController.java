@@ -3,6 +3,7 @@ package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Message;
+import com.app.zlobek.security.GetUserID;
 import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.MessageService;
 import com.app.zlobek.service.ParentService;
@@ -10,6 +11,7 @@ import com.app.zlobek.util.global.GlobalValues;
 import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +30,8 @@ public class MessageController {
     private ParentService parentService;
 
     private AttendanceService attendanceService;
+
+    private int parentId;
 
     @Autowired
     public MessageController(MessageService messageService, ParentService parentService, AttendanceService attendanceService) {
@@ -72,8 +76,12 @@ public class MessageController {
     }
 
     @GetMapping("/listOfMessagesFromDirector")
-    public String showMessagesFromDirector(Model model) {
-        List<Message> listOfMessagesFromParents = messageService.findAllByParentAndDate();
+    public String showMessagesFromDirector(Model model, Authentication authentication) throws Exception {
+
+        GetUserID userID = new GetUserID(authentication);
+        parentId = userID.get();
+
+        List<Message> listOfMessagesFromParents = messageService.findAllByParentAndDate(parentId);
 
         model.addAttribute("listOfMessagesFromParents", listOfMessagesFromParents);
 

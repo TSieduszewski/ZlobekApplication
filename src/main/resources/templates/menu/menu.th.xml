@@ -27,6 +27,8 @@
           th:href="'/babysitter/showAllBabysitters'" th:text="'Zobacz wszystkie opiekunki'"/>
     <attr sel="#imageId"
           th:src="@{/images/azlogo.png}"/>
-
-
+    <attr sel="#directorId"
+          sec:authorize="hasRole('ROLE_DIRECTOR')"/>
+    <attr sel="#userId"
+          sec:authorize="hasRole('ROLE_USER')"/>
 </thlogic>

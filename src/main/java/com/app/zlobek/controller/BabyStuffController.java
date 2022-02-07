@@ -1,17 +1,33 @@
 package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.BabyStuff;
+import com.app.zlobek.security.GetUserID;
 import com.app.zlobek.service.BabyStuffService;
 import com.app.zlobek.service.ParentService;
 import com.app.zlobek.util.global.GlobalValues;
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.KeycloakSecurityContext;
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
+import org.keycloak.representations.AccessToken;
+import org.keycloak.representations.IDToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.token.Token;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/babystuff")
@@ -19,6 +35,7 @@ public class BabyStuffController {
 
     private BabyStuffService babyStuffService;
     private ParentService parentService;
+    private int parentId;
 
     @Autowired
     public BabyStuffController(BabyStuffService babyStuffService, ParentService parentService) {
@@ -97,9 +114,12 @@ public class BabyStuffController {
     }
 
     @GetMapping("/showParentStuff")
-    private String showSingleParentStuff(Model model) {
+    private String showSingleParentStuff(Model model, Authentication authentication) throws Exception {
 
-        BabyStuff parentStuff = babyStuffService.findById(GlobalValues.idParent);
+        GetUserID userID = new GetUserID(authentication);
+        parentId = userID.get();
+
+        BabyStuff parentStuff = babyStuffService.findById(parentId);
         model.addAttribute("parentStuff", parentStuff);
 
         return "stuff/listOfParentStuff";

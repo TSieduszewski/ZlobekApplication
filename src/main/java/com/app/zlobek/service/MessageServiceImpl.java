@@ -57,10 +57,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> findAllByParentAndDate() {
-
-        //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
-        int parentId = 1;
+    public List<Message> findAllByParentAndDate(int parentId) {
 
 
         return messageRepository.findAllByParentAndDateAfterOrderByDateDesc(new Parent(parentId),
