@@ -6,6 +6,7 @@ import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.ParentService;
 import com.app.zlobek.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ public class AttendanceController {
         this.paymentService = paymentService;
     }
 
+//    @Secured("ROLE_USER")
     @GetMapping("/showFormForSelectAttendance")
     public String showForm(Model model) {
         List<Attendance> attendanceList = attendanceService.findAllByIdAndDate();
@@ -42,6 +44,7 @@ public class AttendanceController {
         return "attendance/attendanceForm";
     }
 
+//    @Secured("ROLE_USER")
     @GetMapping("/change")
     public String changeAttendanceStatus(@RequestParam("attendanceId") int theId, Model model) {
 
@@ -58,6 +61,7 @@ public class AttendanceController {
         return "redirect:/attendance/showFormForSelectAttendance";
     }
 
+//    @Secured("ROLE_DIRECTOR")
     @GetMapping("/verify")
     public String changeVerificationStatus(@RequestParam("verificationId") int theId, Model model) {
 
@@ -74,7 +78,7 @@ public class AttendanceController {
         return "redirect:/attendance/showPresentDayListOfAttendanceOfAllParents";
     }
 
-
+//    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showAttendanceOfAllParents")
     public String showAttendanceOfAllParents(Model model) {
         List<Parent> parentList = parentService.findAll();
@@ -82,6 +86,7 @@ public class AttendanceController {
         return "attendance/attendanceList";
     }
 
+//    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showListOfSingleParentsAttendance")
     public String showListOfSingleParentsAttendance(@RequestParam("parentId") int id, Model model) {
 
@@ -94,6 +99,7 @@ public class AttendanceController {
         return "attendance/singleAttendanceList";
     }
 
+//    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showPresentDayListOfAttendanceOfAllParents")
     public String showPresentDayListOfAttendanceOfAllParents(Model model) {
         hourGuard = LocalTime.now().isBefore(LocalTime.of(7, 0, 0));

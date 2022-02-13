@@ -11,6 +11,7 @@ import com.app.zlobek.util.global.GlobalValues;
 import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +41,7 @@ public class MessageController {
         this.attendanceService = attendanceService;
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showFormForAddMessage")
     public String showFormForAddMessage(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("parentId") int theId, Model model) {
 
@@ -50,7 +52,7 @@ public class MessageController {
         return "newMessages/newMessageForm";
     }
 
-
+    @Secured("ROLE_DIRECTOR")
     @PostMapping("/save")
     public String saveMessage(@Valid @ModelAttribute("listOfParents") MessageWithReceivers messageReadyToSave) {
 
@@ -75,6 +77,7 @@ public class MessageController {
 
     }
 
+    @Secured("ROLE_USER")
     @GetMapping("/listOfMessagesFromDirector")
     public String showMessagesFromDirector(Model model, Authentication authentication) throws Exception {
 
@@ -88,6 +91,7 @@ public class MessageController {
         return "parents/listOfMessagesFromDirector";
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/sendPredefinedMessage")
     public String sendPredefinedMessage() {
 

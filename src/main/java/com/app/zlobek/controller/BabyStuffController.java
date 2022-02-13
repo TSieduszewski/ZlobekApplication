@@ -3,50 +3,30 @@ package com.app.zlobek.controller;
 import com.app.zlobek.entity.BabyStuff;
 import com.app.zlobek.security.GetUserID;
 import com.app.zlobek.service.BabyStuffService;
-import com.app.zlobek.service.ParentService;
-import com.app.zlobek.util.global.GlobalValues;
-import org.keycloak.KeycloakPrincipal;
-import org.keycloak.KeycloakSecurityContext;
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
-import org.keycloak.representations.AccessToken;
-import org.keycloak.representations.IDToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.token.Token;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Controller
 @RequestMapping("/babystuff")
 public class BabyStuffController {
 
     private BabyStuffService babyStuffService;
-    private ParentService parentService;
-    private int parentId;
 
     @Autowired
-    public BabyStuffController(BabyStuffService babyStuffService, ParentService parentService) {
+    public BabyStuffController(BabyStuffService babyStuffService) {
         this.babyStuffService = babyStuffService;
-        this.parentService = parentService;
     }
 
-    public String showBabyStuff() {
-        return "";
-    }
-
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showAllStuff")
     public String showAllStuff(Model model) {
 
@@ -55,8 +35,10 @@ public class BabyStuffController {
         model.addAttribute("listOfAllStuff", listOfAllStuff);
 
         return "stuff/showAllStuff";
+
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/update")
     public String updateStuff(@RequestParam("parentId") int id, @RequestParam("change") int change, @RequestParam("stuff") String stuff) {
 
@@ -90,6 +72,7 @@ public class BabyStuffController {
         return "redirect:/babystuff/showAllStuff";
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showFormForUpdateStuff")
     public String showFormForUpdateStuff(@RequestParam("parentId") int id, Model model) {
 
@@ -100,6 +83,7 @@ public class BabyStuffController {
         return "stuff/updateStuffPage";
     }
 
+    @Secured("ROLE_DIRECTOR")
     @PostMapping("/save")
     public String saveStuff(@Valid @ModelAttribute("babyStuff") BabyStuff babyStuff, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -113,15 +97,16 @@ public class BabyStuffController {
 
     }
 
+    @Secured("ROLE_USER")
     @GetMapping("/showParentStuff")
-    private String showSingleParentStuff(Model model, Authentication authentication) throws Exception {
+    public String showParentStuffList(Model model, Authentication authentication) throws Exception {
 
         GetUserID userID = new GetUserID(authentication);
-        parentId = userID.get();
+        int parentId = userID.get();
 
         BabyStuff parentStuff = babyStuffService.findById(parentId);
-        model.addAttribute("parentStuff", parentStuff);
 
+        model.addAttribute("parentStuff", parentStuff);
         return "stuff/listOfParentStuff";
     }
 

@@ -7,6 +7,7 @@ import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.PaymentService;
 import com.app.zlobek.util.global.GlobalValues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ public class PaymentController {
         this.attendanceService = attendanceService;
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/listOfAllPayments")
     public String listOfAllPayments(Model model) {
 
@@ -40,6 +42,7 @@ public class PaymentController {
         return "payments/listOfAllPayments";
     }
 
+    @Secured("ROLE_USER")
     @GetMapping("/actualPayment")
     public String actualPayment(Model model, Authentication authentication) throws Exception {
 
@@ -78,6 +81,7 @@ public class PaymentController {
         return "payments/actualPayment";
     }
 
+    @Secured("ROLE_DIRECTOR")
     private List<Payment> updatePayments() {
         int period = 0;
         int mealPaymentCounter = 0;
