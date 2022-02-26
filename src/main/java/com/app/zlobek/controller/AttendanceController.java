@@ -2,17 +2,21 @@ package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Parent;
+import com.app.zlobek.security.GetUserID;
 import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.ParentService;
 import com.app.zlobek.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -34,34 +38,45 @@ public class AttendanceController {
         this.paymentService = paymentService;
     }
 
-//    @Secured("ROLE_USER")
+    @Secured("ROLE_USER")
     @GetMapping("/showFormForSelectAttendance")
-    public String showForm(Model model) {
-        List<Attendance> attendanceList = attendanceService.findAllByIdAndDate();
+    public String showForm(Model model, Authentication authentication) throws Exception {
+
+        GetUserID userID = new GetUserID(authentication);
+        int parentId = userID.get();
+
+        List<Attendance> attendanceList = attendanceService.findAllByIdAndDate(parentId);
 
         model.addAttribute("attendanceList", attendanceList);
 
         return "attendance/attendanceForm";
     }
 
-//    @Secured("ROLE_USER")
+    @Secured("ROLE_USER")
     @GetMapping("/change")
-    public String changeAttendanceStatus(@RequestParam("attendanceId") int theId, Model model) {
+    public String changeAttendanceStatus(@RequestParam("attendanceId") int theId, Authentication authentication) throws Exception {
 
         Attendance attendance = attendanceService.findById(theId);
 
-        if (attendance.getAttendant()) {
-            attendance.setAttendant(false);
-        } else {
-            attendance.setAttendant(true);
-        }
+        GetUserID userID = new GetUserID(authentication);
+        int parentId = userID.get();
+        List<Attendance> attendanceList = attendanceService.findAllByIdAndDate(parentId);
 
-        attendanceService.save(attendance);
+        if(parentId == attendance.getParent().getId() && attendanceList.contains(attendance)){
+            if (attendance.getAttendant()) {
+                attendance.setAttendant(false);
+            } else {
+                attendance.setAttendant(true);
+            }
+
+            attendanceService.save(attendance);
+        }
 
         return "redirect:/attendance/showFormForSelectAttendance";
     }
 
-//    @Secured("ROLE_DIRECTOR")
+
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/verify")
     public String changeVerificationStatus(@RequestParam("verificationId") int theId, Model model) {
 
@@ -78,7 +93,7 @@ public class AttendanceController {
         return "redirect:/attendance/showPresentDayListOfAttendanceOfAllParents";
     }
 
-//    @Secured("ROLE_DIRECTOR")
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showAttendanceOfAllParents")
     public String showAttendanceOfAllParents(Model model) {
         List<Parent> parentList = parentService.findAll();
@@ -86,7 +101,7 @@ public class AttendanceController {
         return "attendance/attendanceList";
     }
 
-//    @Secured("ROLE_DIRECTOR")
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showListOfSingleParentsAttendance")
     public String showListOfSingleParentsAttendance(@RequestParam("parentId") int id, Model model) {
 
@@ -99,7 +114,7 @@ public class AttendanceController {
         return "attendance/singleAttendanceList";
     }
 
-//    @Secured("ROLE_DIRECTOR")
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showPresentDayListOfAttendanceOfAllParents")
     public String showPresentDayListOfAttendanceOfAllParents(Model model) {
         hourGuard = LocalTime.now().isBefore(LocalTime.of(7, 0, 0));

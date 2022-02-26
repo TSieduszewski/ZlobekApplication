@@ -48,19 +48,17 @@ public class PaymentController {
 
         GetUserID userID = new GetUserID(authentication);
         parentId = userID.get();
-
         Payment payment = paymentService.findByParent(parentId, GlobalValues.actualMonth);
+//        //tu na miękko wrzuca nowe płatności w metodzie, którą wywołują zasadniczo rodzice.
+//        //trzeba to zmienić tak, aby aplikacja w momencie działania sama aktualizowała tabele np na początku miesiąca
+//        //ZMIEN TO KONIECZNIE BO NIE ZACHOWANA JEST ZASADA HERMETYZACJI
+//        if (Objects.isNull(payment)) {
+//            listOfAllPayments(model);
+//            payment = paymentService.findByParent(parentId, GlobalValues.actualMonth);
+//        }
         Payment paymentPreviousMonth = paymentService.findByParent(parentId, GlobalValues.previousMonth);
         List<Attendance> attendanceList = attendanceService.findAllByIdFromLastMonth(payment.getParent().getId());
         String previousMonth ="";
-
-        //tu na miękko wrzuca nowe płatności w metodzie, którą wywołują zasadniczo rodzice.
-        //trzeba to zmienić tak, aby aplikacja w momencie działania sama aktualizowała tabele np na początku miesiąca
-        //ZMIEN TO KONIECZNIE BO NIE ZACHOWANA JEST ZASADA HERMETYZACJI
-        if (Objects.isNull(payment)) {
-            listOfAllPayments(model);
-            payment = paymentService.findByParent(parentId, GlobalValues.actualMonth);
-        }
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("LLLL");
 

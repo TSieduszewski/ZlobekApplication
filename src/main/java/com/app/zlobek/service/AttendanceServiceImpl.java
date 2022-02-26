@@ -4,7 +4,9 @@ import com.app.zlobek.dao.AttendanceRepository;
 import com.app.zlobek.dao.ParentRepository;
 import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Parent;
+import com.app.zlobek.security.GetUserID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,9 +35,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public List<Attendance> findAllByIdAndDate() {
-        //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
-        int parentId = 1;
+    public List<Attendance> findAllByIdAndDate(int parentId) {
 
         int tempAttendanceListSize = attendanceRepository.findAllByParentAndAttendanceDateBetweenOrderByAttendanceDateDesc
                 (new Parent(parentId), hourGuard(), hourGuard().plusDays(10))

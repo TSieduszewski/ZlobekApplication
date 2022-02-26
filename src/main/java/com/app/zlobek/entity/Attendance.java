@@ -64,4 +64,6 @@ public class Attendance {
     public Attendance(Boolean verification) {
         this.verification = verification;
     }
+
+
 }
