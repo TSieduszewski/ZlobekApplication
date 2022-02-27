@@ -31,4 +31,6 @@
           sec:authorize="hasRole('ROLE_DIRECTOR')"/>
     <attr sel="#userId"
           sec:authorize="hasRole('ROLE_USER')"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>

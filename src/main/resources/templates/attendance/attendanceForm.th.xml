@@ -11,4 +11,6 @@
           th:href="@{/attendance/change(attendanceId=${tempAttendance.id})}" th:text="${tempAttendance.attendant} ? 'Zmień na nieobecność' : 'Zmień na obecność'"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>

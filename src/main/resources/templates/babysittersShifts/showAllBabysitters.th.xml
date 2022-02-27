@@ -10,7 +10,8 @@
           th:href="@{/babysitter/updateBabysitter(babysitterId=${tempBabysitters.id})}" th:text="'Edytuj'"/>
     <attr sel="#deleteBabysitterId"
           th:href="@{/babysitter/deleteBabysitter(babysitterId=${tempBabysitters.id})}" th:text="'Usuń'"/>
-
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 
 
     <attr sel="#footerId"

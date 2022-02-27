@@ -29,4 +29,6 @@
           th:href="@{/messages/sendPredefinedMessage}" th:text="'Wyślij powiadomienie o naliczonych opłatach'" class="btn btn-primary btn-lg disabled" style="width: 50%" role="button" onclick="alert('Wiadomości rozesłane')"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>

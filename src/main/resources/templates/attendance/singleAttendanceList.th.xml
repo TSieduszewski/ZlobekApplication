@@ -12,4 +12,6 @@
           th:text="${tempAttendance.verification} ? 'Obecność' : 'Nieobecność'"/>
     <attr sel="#backId"
           th:href="'/attendance/showAttendanceOfAllParents'" th:text="Powrót"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>
