@@ -3,6 +3,7 @@ package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Message;
+import com.app.zlobek.security.GetUserID;
 import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.MessageService;
 import com.app.zlobek.service.ParentService;
@@ -10,6 +11,8 @@ import com.app.zlobek.util.global.GlobalValues;
 import com.app.zlobek.util.messages.MessageWithReceivers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +32,8 @@ public class MessageController {
 
     private AttendanceService attendanceService;
 
+    private int parentId;
+
     @Autowired
     public MessageController(MessageService messageService, ParentService parentService, AttendanceService attendanceService) {
         this.messageService = messageService;
@@ -36,6 +41,7 @@ public class MessageController {
         this.attendanceService = attendanceService;
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/showFormForAddMessage")
     public String showFormForAddMessage(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("parentId") int theId, Model model) {
 
@@ -46,7 +52,7 @@ public class MessageController {
         return "newMessages/newMessageForm";
     }
 
-
+    @Secured("ROLE_DIRECTOR")
     @PostMapping("/save")
     public String saveMessage(@Valid @ModelAttribute("listOfParents") MessageWithReceivers messageReadyToSave) {
 
@@ -71,15 +77,21 @@ public class MessageController {
 
     }
 
+    @Secured("ROLE_USER")
     @GetMapping("/listOfMessagesFromDirector")
-    public String showMessagesFromDirector(Model model) {
-        List<Message> listOfMessagesFromParents = messageService.findAllByParentAndDate();
+    public String showMessagesFromDirector(Model model, Authentication authentication) throws Exception {
+
+        GetUserID userID = new GetUserID(authentication);
+        parentId = userID.get();
+
+        List<Message> listOfMessagesFromParents = messageService.findAllByParentAndDate(parentId);
 
         model.addAttribute("listOfMessagesFromParents", listOfMessagesFromParents);
 
         return "parents/listOfMessagesFromDirector";
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/sendPredefinedMessage")
     public String sendPredefinedMessage() {
 

@@ -2,10 +2,13 @@ package com.app.zlobek.controller;
 
 import com.app.zlobek.entity.Attendance;
 import com.app.zlobek.entity.Payment;
+import com.app.zlobek.security.GetUserID;
 import com.app.zlobek.service.AttendanceService;
 import com.app.zlobek.service.PaymentService;
 import com.app.zlobek.util.global.GlobalValues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,38 +25,40 @@ public class PaymentController {
 
     private PaymentService paymentService;
     private AttendanceService attendanceService;
-
+    private int parentId;
     @Autowired
     public PaymentController(PaymentService paymentService, AttendanceService attendanceService) {
         this.paymentService = paymentService;
         this.attendanceService = attendanceService;
     }
 
+    @Secured("ROLE_DIRECTOR")
     @GetMapping("/listOfAllPayments")
     public String listOfAllPayments(Model model) {
-        int period = 0;
-        // List<Payment> payment = paymentService.findAllByMonthOrderByMonthDesc(LocalDate.now().minusMonths(period));
+
         List<Payment> payment = updatePayments();
         model.addAttribute("listOfPayments", payment);
 
         return "payments/listOfAllPayments";
     }
 
+    @Secured("ROLE_USER")
     @GetMapping("/actualPayment")
-    public String actualPayment(Model model) {
+    public String actualPayment(Model model, Authentication authentication) throws Exception {
 
-        Payment payment = paymentService.findByParent(GlobalValues.idParent, GlobalValues.actualMonth);
-        Payment paymentPreviousMonth = paymentService.findByParent(GlobalValues.idParent, GlobalValues.previousMonth);
+        GetUserID userID = new GetUserID(authentication);
+        parentId = userID.get();
+        Payment payment = paymentService.findByParent(parentId, GlobalValues.actualMonth);
+//        //tu na miękko wrzuca nowe płatności w metodzie, którą wywołują zasadniczo rodzice.
+//        //trzeba to zmienić tak, aby aplikacja w momencie działania sama aktualizowała tabele np na początku miesiąca
+//        //ZMIEN TO KONIECZNIE BO NIE ZACHOWANA JEST ZASADA HERMETYZACJI
+//        if (Objects.isNull(payment)) {
+//            listOfAllPayments(model);
+//            payment = paymentService.findByParent(parentId, GlobalValues.actualMonth);
+//        }
+        Payment paymentPreviousMonth = paymentService.findByParent(parentId, GlobalValues.previousMonth);
         List<Attendance> attendanceList = attendanceService.findAllByIdFromLastMonth(payment.getParent().getId());
         String previousMonth ="";
-
-        //tu na miękko wrzuca nowe płatności w metodzie, którą wywołują zasadniczo rodzice.
-        //trzeba to zmienić tak, aby aplikacja w momencie działania sama aktualizowała tabele np na początku miesiąca
-        //ZMIEN TO KONIECZNIE BO NIE ZACHOWANA JEST ZASADA HERMETYZACJI
-        if (Objects.isNull(payment)) {
-            listOfAllPayments(model);
-            payment = paymentService.findByParent(GlobalValues.idParent, GlobalValues.actualMonth);
-        }
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("LLLL");
 
@@ -74,6 +79,7 @@ public class PaymentController {
         return "payments/actualPayment";
     }
 
+    @Secured("ROLE_DIRECTOR")
     private List<Payment> updatePayments() {
         int period = 0;
         int mealPaymentCounter = 0;

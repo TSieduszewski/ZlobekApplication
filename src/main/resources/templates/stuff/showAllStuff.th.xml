@@ -48,7 +48,8 @@
 
     <attr sel="#updateAllStuff"
           th:href="@{/babystuff/showFormForUpdateStuff(parentId=${tempStuff.parent.id})}" th:text="'Zaktualizuj'"/>
-
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>

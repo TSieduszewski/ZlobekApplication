@@ -44,4 +44,6 @@
           th:href="'/parents/list'" th:text="Powrót"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>

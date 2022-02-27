@@ -2,11 +2,16 @@ package com.app.zlobek.service;
 
 import com.app.zlobek.dao.MessageRepository;
 import com.app.zlobek.dao.ParentRepository;
+import com.app.zlobek.dao.PaymentRepository;
 import com.app.zlobek.entity.Parent;
+import com.app.zlobek.entity.Payment;
+import com.app.zlobek.util.global.GlobalValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +20,12 @@ import java.util.Optional;
 public class ParentServiceImpl implements ParentService {
 
     private ParentRepository parentRepository;
+    private PaymentRepository paymentRepository;
 
     @Autowired
-    public ParentServiceImpl(ParentRepository parentRepository) {
+    public ParentServiceImpl(ParentRepository parentRepository, PaymentRepository paymentRepository) {
         this.parentRepository = parentRepository;
+        this.paymentRepository = paymentRepository;
     }
 
     @Override
@@ -43,6 +50,9 @@ public class ParentServiceImpl implements ParentService {
     @Override
     public void save(Parent parent) {
         parentRepository.save(parent);
+        LocalDate actualMonth = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-01")));
+        paymentRepository.save(new Payment(GlobalValues.tuition, 0, actualMonth, GlobalValues.tuition, parent));
+
     }
 
     @Override

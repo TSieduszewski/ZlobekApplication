@@ -11,5 +11,6 @@
           type="text" th:field="${question.message}" id="messageLabel"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
-
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>

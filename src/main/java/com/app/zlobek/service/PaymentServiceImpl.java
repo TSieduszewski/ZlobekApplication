@@ -74,10 +74,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment findByParent(int idParent, LocalDate date) {
 
-        //tutaj zamiast liczby na sztywno wartość która będzie przekazywana po zalogowaniu - zrobić, żeby ustalać id po logowaniu
-        int parentId = idParent;
-
-        return paymentRepository.findByParentAndMonth(new Parent(parentId), date);
+        return paymentRepository.findByParentAndMonth(new Parent(idParent), date);
 
     }
 

@@ -18,7 +18,7 @@ public interface MessageService{
 
     void deleteById(int id);
 
-    List<Message> findAllByParentAndDate();
+    List<Message> findAllByParentAndDate(int parentId);
 
     Page<Message> findPaginated(Pageable pageable, List<Message> messages);
 }

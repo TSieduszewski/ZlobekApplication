@@ -13,4 +13,6 @@
           th:replace="~{fragments/footer::footerFragment}"/>
     <attr sel="#backId"
           th:href="${url}" th:text="Powrót"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>

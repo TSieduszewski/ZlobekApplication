@@ -18,4 +18,6 @@
           th:href="@{/messages/showFormForAddMessage(parentId=${tempQuestion.parent.id})}"  th:text="'Odpowiedz'"/>
     <attr sel="#footerId"
           th:replace="~{fragments/footer::footerFragment}"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 </thlogic>

@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public class GlobalValues {
 
-    public static final int idParent = 1;
     public static final int singleMealPrice = 10;
     public static final int tuition = 690;
     public static final LocalDate actualMonth = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-01")));

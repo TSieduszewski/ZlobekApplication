@@ -18,6 +18,8 @@
           th:href="@{/shift/updateShift(shiftId=${tempBabysitter.id})}" th:text="'Edytuj'"/>
     <attr sel="#deleteShiftId"
           th:href="@{/shift/deleteShift(shiftId=${tempBabysitter.id})}" th:text="'Usuń'"/>
+    <attr sel="#headerId"
+          th:replace="~{fragments/footer::headerFragment}"/>
 
     <attr sel="#backId"
           th:href="@{/shift/showAllShifts}" th:text="'Powrót'"/>

@@ -23,7 +23,6 @@ public class BabyStuffServiceImpl implements BabyStuffService {
 
     @Override
     public BabyStuff findById(int id) {
-        //pamiętać, żeby zrobić, aby przy logowaniu globalną wartość idParent ustawiać w zależności, kto się zaloguje
 
         Optional<BabyStuff> result = babyStuffRepository.findById(id);
 
