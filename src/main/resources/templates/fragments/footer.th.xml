@@ -6,7 +6,7 @@
           th:fragment="headerFragment" th:align="right"/>
 
     <attr sel="#logoutId"
-          th:href="@{/logout}" th:text="'Wyloguj'"/>
+          th:href="@{/logout}"/>
 
 
     <attr sel="#userId"
