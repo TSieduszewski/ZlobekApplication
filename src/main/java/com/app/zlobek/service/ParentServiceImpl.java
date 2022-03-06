@@ -50,9 +50,8 @@ public class ParentServiceImpl implements ParentService {
     @Override
     public void save(Parent parent) {
         parentRepository.save(parent);
-        LocalDate actualMonth = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-01")));
-        paymentRepository.save(new Payment(GlobalValues.tuition, 0, actualMonth, GlobalValues.tuition, parent));
-
+//        LocalDate actualMonth = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-01")));
+//        paymentRepository.save(new Payment(GlobalValues.tuition, 0, actualMonth, GlobalValues.tuition, parent));
     }
 
     @Override
