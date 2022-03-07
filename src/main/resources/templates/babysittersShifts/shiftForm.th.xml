@@ -3,7 +3,11 @@
           action="#" th:action="@{/shift/saveShift}" th:object="${shift}" method="POST"/>
 
     <attr sel="#babysitterIdId"
-          type="hidden" th:field="*{idOfBabysitter}"/>
+          th:if="${shift.idOfBabysitter!=0}" type="hidden" th:field="*{idOfBabysitter}"/>
+    <attr sel="#babysitterToChooseId"
+          th:if="${shift.idOfBabysitter==0}" class="form-select mb-2" th:field="*{idOfBabysitter}"/>
+    <attr sel="#babysitterOptionsId"
+          th:each="tempBabysitters : ${babysitters}" th:value="${tempBabysitters.id}" th:text="${tempBabysitters.name}"/>
     <attr sel="#shiftId"
           type="hidden" th:field="*{shift.id}"/>
     <attr sel="#startShiftId"
