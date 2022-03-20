@@ -4,6 +4,9 @@
 
     <attr sel="#babysitterNameId"
           th:href="@{/babysitter/showSingleBabysitter(babysitterId=${tempShifts.babysitter.id})}" th:text="${tempShifts.babysitter.name}"/>
+    <attr sel="#addShiftId"
+          th:href="@{/shift/addShift}" th:text="'Dodaj zmianę'"/>
+
     <attr sel="#dateId"
           th:text="${tempShifts.startShift.toLocalDate()}"/>
     <attr sel="#startShiftId"

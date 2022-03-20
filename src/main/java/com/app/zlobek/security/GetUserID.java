@@ -28,7 +28,7 @@ public class GetUserID {
         if (customClaims.containsKey("clientid")) {
             return Integer.parseInt(String.valueOf(customClaims.get("clientid")));
         } else {
-            throw new Exception();
+            throw new Exception("Tu jest pies pogrzebany");
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.app.zlobek.controller;
 
+import com.app.zlobek.entity.Babysitter;
 import com.app.zlobek.entity.Shift;
 import com.app.zlobek.service.BabysitterService;
 import com.app.zlobek.service.ShiftService;
@@ -39,12 +40,19 @@ public class ShiftController {
     }
 
     @GetMapping("/addShift")
-    public String addShift(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam("babysitterId") int id, Model model) {
+    public String addShift(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String url, @RequestParam(value = "babysitterId", required = false) Integer id, Model model) {
 
-        ShiftWithBabysitter shift = new ShiftWithBabysitter(id);
-
-        model.addAttribute("shift", shift);
-        model.addAttribute("url", url);
+        if(id!=null){
+            ShiftWithBabysitter shift = new ShiftWithBabysitter(id);
+            model.addAttribute("shift", shift);
+            model.addAttribute("url", url);
+        } else {
+            ShiftWithBabysitter shift = new ShiftWithBabysitter();
+            List<Babysitter> babysitters = babysitterService.findAllBabysitters();
+            model.addAttribute("shift", shift);
+            model.addAttribute("url", url);
+            model.addAttribute("babysitters", babysitters);
+        }
 
         return "babysittersShifts/shiftForm";
     }

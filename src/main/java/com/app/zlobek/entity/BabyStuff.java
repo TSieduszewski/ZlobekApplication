@@ -43,4 +43,17 @@ public class BabyStuff {
     @MapsId
     @JoinColumn(name = "parent_id")
     private Parent parent;
+
+    public BabyStuff(Integer dryWipes, Integer wetWipes, Integer diapers, Integer towels, Integer bibs, Parent parent) {
+        this.dryWipes = dryWipes;
+        this.wetWipes = wetWipes;
+        this.diapers = diapers;
+        this.towels = towels;
+        this.bibs = bibs;
+        this.parent = parent;
+    }
+
+    public BabyStuff() {
+
+    }
 }

@@ -13,6 +13,7 @@ public class ShiftWithBabysitter {
     private Shift shift;
 
     public ShiftWithBabysitter() {
+        shift = new Shift();
     }
 
     public ShiftWithBabysitter(int idOfBabysitter) {

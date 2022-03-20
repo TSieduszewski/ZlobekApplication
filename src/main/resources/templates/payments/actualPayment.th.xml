@@ -1,6 +1,10 @@
 <thlogic>
     <attr sel="#check"
           th:if="${paymentPreviousMonth != null}"/>
+    <attr sel="#checkActual"
+          th:if="${payment != null}"/>
+    <attr sel="#checkAttendance"
+          th:if="${attendance != null}"/>
     <attr sel="#tuitionId"
           th:text="${payment.tuition}"/>
     <attr sel="#previousMonthTuitionId"
